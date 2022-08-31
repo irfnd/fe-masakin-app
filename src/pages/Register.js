@@ -1,11 +1,11 @@
 // Components + Images
 import AuthLayout from "components/layouts/AuthLayout";
-import LoginForm from "components/pages/auth/LoginForm";
+import RegisterForm from "components/pages/auth/RegisterForm";
 
 export default function Login() {
 	return (
-		<AuthLayout title="Login">
-			<LoginForm />
+		<AuthLayout title="Register">
+			<RegisterForm />
 		</AuthLayout>
 	);
 }

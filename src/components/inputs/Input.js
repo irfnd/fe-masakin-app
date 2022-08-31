@@ -1,4 +1,4 @@
-// Components
+// Components + Images
 import InputText from "components/inputs/InputText";
 import InputEmail from "components/inputs/InputEmail";
 import InputPassword from "components/inputs/InputPassword";
