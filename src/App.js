@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router-dom";
 
 // Components + Images
 import Home from "pages/Home";
-import Register from "pages/Register";
-import Login from "pages/Login";
+import Register from "pages/auth/Register";
+import Login from "pages/auth/Login";
 
 export default function App() {
 	return (
