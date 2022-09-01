@@ -13,8 +13,8 @@ export default function NewRecipe() {
 					display={{ base: "none", md: "block" }}
 					bg="orange.500"
 					position="absolute"
-					borderTopEndRadius="2xl"
-					left={0}
+					borderTopStartRadius="2xl"
+					right={0}
 					w={{ md: "30%", lg: "25%" }}
 					mt={32}
 					h={{ md: "55%", lg: "60%" }}
@@ -44,15 +44,6 @@ export default function NewRecipe() {
 					</Flex>
 					<Flex direction={{ base: "column", md: "row" }} w="full" align="center" gap={{ base: 10, md: 14 }}>
 						<Flex
-							justify={{ base: "center", md: "start" }}
-							align="center"
-							w={{ base: "full", sm: "80%", md: "50%" }}
-						>
-							<AspectRatio w="450px" ratio={1}>
-								<Image src={DiscoverImg} rounded="2xl" alt="Photo Section 1" objectFit="cover" />
-							</AspectRatio>
-						</Flex>
-						<Flex
 							direction="column"
 							justify={{ base: "center", md: "start" }}
 							align={{ base: "center", md: "start" }}
@@ -75,7 +66,7 @@ export default function NewRecipe() {
 							</Text>
 							<Divider borderColor="gray.800" w="20%" />
 							<Text fontSize={{ base: 16, md: 18, lg: 20 }}>
-								Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in a hurry? That’s right!
+								Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in a hurry? That&apos;s right!
 							</Text>
 							<Button
 								bg="yellow.400"
@@ -90,6 +81,15 @@ export default function NewRecipe() {
 							>
 								Learn More
 							</Button>
+						</Flex>
+						<Flex
+							justify={{ base: "center", md: "end" }}
+							align="center"
+							w={{ base: "full", sm: "80%", md: "50%" }}
+						>
+							<AspectRatio w="450px" ratio={1}>
+								<Image src={DiscoverImg} rounded="2xl" alt="Photo Section 1" objectFit="cover" />
+							</AspectRatio>
 						</Flex>
 					</Flex>
 				</Flex>

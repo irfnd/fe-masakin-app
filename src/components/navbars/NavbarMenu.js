@@ -1,10 +1,14 @@
+import { useMatch, useNavigate } from "react-router-dom";
+
 // Styles + Icons
 import { Stack, HStack, Button, Link } from "@chakra-ui/react";
 
 // Constants
 import { NAV_ITEMS } from "constants/NavbarConst";
 
-export default function NavbarMenu({ isMobile = false }) {
+export default function NavbarMenu(props) {
+	const { isMobile = false } = props;
+
 	if (isMobile) {
 		return (
 			<Stack align="end" spacing={4}>
@@ -14,19 +18,29 @@ export default function NavbarMenu({ isMobile = false }) {
 	}
 	return (
 		<HStack spacing={12} display={{ base: "none", md: "flex" }}>
-			<Menu />
+			{NAV_ITEMS.map((item) => (
+				<Menu key={item.url} navLink={item} />
+			))}
 		</HStack>
 	);
 }
 
-function Menu() {
+function Menu(props) {
+	const { navLink } = props;
+	const isMatch = useMatch(navLink.url);
+	const navigate = useNavigate();
+
 	return (
-		<>
-			{NAV_ITEMS.map((item) => (
-				<Button key={item.url} as={Link} variant="link" color="purple.900" fontSize={16} fontWeight="medium">
-					{item.text}
-				</Button>
-			))}
-		</>
+		<Button
+			as={Link}
+			variant="link"
+			color="purple.900"
+			fontSize={16}
+			fontWeight="medium"
+			textDecoration={isMatch ? "underline" : "none"}
+			onClick={() => navigate(navLink.url)}
+		>
+			{navLink.text}
+		</Button>
 	);
 }
