@@ -17,7 +17,7 @@ export default function AuthLayout(props) {
 				position={{ base: "absolute", md: "fixed" }}
 				justify="center"
 				align="center"
-				bgImage={`linear-gradient(rgba(252, 193, 28, 0.8), rgba(252, 193, 28, 0.8)), url(${BgLogin})`}
+				bgImage={`linear-gradient(rgba(230, 98, 0, 0.7), rgba(230, 98, 0, 0.7)), url(${BgLogin})`}
 				bgPosition="top"
 				bgSize="cover"
 				bgRepeat="no-repeat"
@@ -26,13 +26,7 @@ export default function AuthLayout(props) {
 			>
 				<Flex direction="column" align="center">
 					<Icon as={GiCook} color="white" boxSize="100px" />
-					<Text
-						fontFamily={`"Concert One", cursive`}
-						fontSize={24}
-						lineHeight={1}
-						color="white"
-						m={0}
-					>
+					<Text fontFamily={`"Concert One", cursive`} fontSize={24} lineHeight={1} color="white" m={0}>
 						Masakin
 					</Text>
 				</Flex>

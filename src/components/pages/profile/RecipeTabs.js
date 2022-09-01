@@ -18,7 +18,7 @@ export default function RecipeTabs() {
 						fontSize={{ base: 13, sm: 14, md: 16, lg: 18 }}
 						fontWeight="semibold"
 						color="gray.500"
-						_selected={{ color: "gray.800" }}
+						_selected={{ color: "purple.900" }}
 					>
 						My Recipe
 					</Tab>
@@ -26,7 +26,7 @@ export default function RecipeTabs() {
 						fontSize={{ base: 13, sm: 14, md: 16, lg: 18 }}
 						fontWeight="semibold"
 						color="gray.500"
-						_selected={{ color: "gray.800" }}
+						_selected={{ color: "purple.900" }}
 					>
 						Saved Recipe
 					</Tab>
@@ -34,7 +34,7 @@ export default function RecipeTabs() {
 						fontSize={{ base: 13, sm: 14, md: 16, lg: 18 }}
 						fontWeight="semibold"
 						color="gray.500"
-						_selected={{ color: "gray.800" }}
+						_selected={{ color: "purple.900" }}
 					>
 						Liked Recipe
 					</Tab>

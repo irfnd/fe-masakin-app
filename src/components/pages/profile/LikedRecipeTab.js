@@ -7,8 +7,8 @@ import DiscoverImg from "assets/images/discover.jpg";
 export default function LikedRecipeTab() {
 	return (
 		<SimpleGrid columns={{ base: 1, sm: 2, md: 3, xl: 4 }} spacing={8} w="full">
-			{[...Array(8)].map((el) => (
-				<Flex position="relative" cursor="pointer">
+			{[...Array(6)].map((el, i) => (
+				<Flex key={`liked-${i}`} position="relative" cursor="pointer">
 					<Box
 						position="absolute"
 						bgGradient="linear(transparent, rgba(0, 0, 0, 0.5) 80%)"

@@ -18,29 +18,30 @@ export default function NavbarMenu(props) {
 	}
 	return (
 		<HStack spacing={12} display={{ base: "none", md: "flex" }}>
-			{NAV_ITEMS.map((item) => (
-				<Menu key={item.url} navLink={item} />
-			))}
+			<Menu />
 		</HStack>
 	);
 }
 
-function Menu(props) {
-	const { navLink } = props;
-	const isMatch = useMatch(navLink.url);
+function Menu() {
 	const navigate = useNavigate();
 
 	return (
-		<Button
-			as={Link}
-			variant="link"
-			color="purple.900"
-			fontSize={16}
-			fontWeight="medium"
-			textDecoration={isMatch ? "underline" : "none"}
-			onClick={() => navigate(navLink.url)}
-		>
-			{navLink.text}
-		</Button>
+		<>
+			{NAV_ITEMS.map((item) => (
+				<Button
+					key={item.url}
+					as={Link}
+					variant="link"
+					color="purple.900"
+					fontSize={16}
+					fontWeight="medium"
+					textDecoration={useMatch(item.url) ? "underline" : "none"}
+					onClick={() => navigate(item.url)}
+				>
+					{item.text}
+				</Button>
+			))}
+		</>
 	);
 }
