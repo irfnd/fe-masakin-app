@@ -1,11 +1,8 @@
-<div id="top"></div>
-
 <!-- PROJECT LOGO -->
-<br />
 <div align="center">
-  <a href="">
-    <img src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659171078/portofolio/Hirejob/logo_ectiuy.png" alt="Logo" width="300px">
-  </a>
+  <p>
+    <img src="https://raw.githubusercontent.com/irfnd/fe-masakin-app/master/docs/main-banner.png" alt="Logo" width="auto">
+  </p>
 
   <h3 align="center">Masakin App</h3>
   <i><h4 align="center">A place to find inspiration for cooking recipes anywhere and anytime</h4></i>
@@ -43,53 +40,64 @@ Before going to the installation stage there are some software that must be inst
 
 [![Node JS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/en/download)
 
+### Optional
+
+You can install yarn package manager for your project
+
+[![Yarn](https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)](https://yarnpkg.com/)
+
 ### Installation
 
-If you want to run this project locally, I recommend you to configure the [backend](https://github.com/Candra-Julius/Cafein-BackEnd) first before configuring this repo front-end.
+If you want to run this project locally, I recommend you to configure the [backend](https://github.com/Candra-Julius/Cafein-BackEnd) first before configuring this frontend repo.
 
-- Clone the repo
+- Clone this repo
 
-```
-git clone https://github.com/NisrinaNataraharja/FE-Cafein.git
-```
-
-- Go To Folder Repo
-
-```
-cd FE-Cafein
+```bash
+git clone https://github.com/irfnd/fe-masakin-app
 ```
 
-- Install Module
+- Go to folder repo
 
+```bash
+cd fe-masakin-app
 ```
+
+- Install packages
+
+```bash
 npm install
 ```
 
-- <a href="#setup-env">Setup .env</a>
-- Type ` npm run dev` To Start Website
-- Type ` npm run start` To Start Production
+- or install packages with yarn
+
+```bash
+yarn
+```
+
+- <a href="#setup-env-example">Create .env file</a>
+- Type `npm run start` or `yarn start` to start project
+- Type `npm run build` or `yarn build` to build production
 
 ### Setup .env example
 
 Create .env file in your root project folder.
 
 ```
-REACT_APP_APP_NAME = [APP_NAME]
-REACT_APP_NODE_ENV = [NODE_ENV]
-REACT_APP_API_URL = [API_URL]
+REACT_APP_APP_NAME=[APP_NAME]
+REACT_APP_NODE_ENV=[NODE_ENV]
+REACT_APP_API_URL=[API_URL]
 ```
 
-## Screenshoots
+## Screenshots
 
 <p align="center" display=flex>
    
 <table>
- 
   <tr>
     <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659171973/portofolio/Hirejob/login_itsjdz.png" alt="Login Page" width=100%></td>
     <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659171977/portofolio/Hirejob/register_av7ren.png" width=100%/></td>
   </tr>
-   <tr>
+  <tr>
     <td>Login Page</td>
     <td>Register Page</td>
   </tr>
