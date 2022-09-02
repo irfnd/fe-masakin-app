@@ -7,7 +7,7 @@
     <img src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659171078/portofolio/Hirejob/logo_ectiuy.png" alt="Logo" width="300px">
   </a>
 
-  <h2 align="center">Masakin App</h2>
+  <h3 align="center">Masakin App</h3>
   <i><h4 align="center">A place to find inspiration for cooking recipes anywhere and anytime</h4></i>
 
   <p align="center">
