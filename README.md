@@ -8,11 +8,11 @@
   <i><h4 align="center">A place to find inspiration for cooking recipes anywhere and anytime</h4></i>
 
   <p align="center">
-    <a href="https://fe-cafein.vercel.app/">View Demo</a>
+    <a href="https://masakin-app.vercel.app/">View Demo</a>
     |
-    <a href="https://github.com/NisrinaNataraharja/FE-Cafein/issues">Report Bug</a>
+    <a href="https://github.com/irfnd/fe-masakin-app/issues">Report Bug</a>
     |
-    <a href="https://github.com/NisrinaNataraharja/FE-Cafein/issues">Request Feature</a>
+    <a href="https://github.com/irfnd/fe-masakin-app/issues">Request Feature</a>
   </p>
 </div>
 
@@ -138,16 +138,6 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes `git commit -m 'Add some AmazingFeature'`
 4. Push to the Branch `git push origin feature/AmazingFeature`
 5. Open a Pull Request
-
-## Related Project
-
-:rocket: [`Backend Hire Job`](https://github.com/fandipras7/Cafein-BackEnd)
-
-:rocket: [`Frontend Hire Job`](https://github.com/fandipras7/FE-Cafein)
-
-:rocket: [`Web Service`](https://hire-job-app.herokuapp.com)
-
-:rocket: [`Demo Hire Job`](https://fe-cafein.vercel.app/)
 
 ## License
 
