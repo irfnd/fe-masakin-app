@@ -17,6 +17,7 @@
 		"no-nested-ternary": "off",
 		"no-unused-vars": "off",
 		"no-console": "off",
+		"no-use-before-define": "off",
 		"import/no-unresolved": "off",
 		"import/no-duplicates": "off",
 		"import/order": "off",

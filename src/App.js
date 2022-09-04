@@ -5,6 +5,7 @@ import Home from "pages/Home";
 import Register from "pages/auth/Register";
 import Login from "pages/auth/Login";
 import Profile from "pages/profile/Profile";
+import Search from "pages/Search";
 
 export default function App() {
 	return (
@@ -15,6 +16,7 @@ export default function App() {
 			<Route path="profile">
 				<Route index element={<Profile />} />
 			</Route>
+			<Route path="search" element={<Search />} />
 		</Routes>
 	);
 }

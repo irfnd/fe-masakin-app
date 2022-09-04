@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
+
 // Styles + Icons
 import {
 	Box,
@@ -18,6 +21,11 @@ import CustomContainer from "components/layouts/CustomContainer";
 import DiscoverImg from "assets/images/discover.jpg";
 
 export default function Discover() {
+	const [search, setSearch] = useState("");
+	const navigate = useNavigate();
+
+	const onEnter = (e) => e.key === "Enter" && navigate(`/search?search=${search}`);
+
 	return (
 		<CustomContainer position="relative">
 			<Flex
@@ -55,7 +63,7 @@ export default function Discover() {
 					</Heading>
 					<InputGroup w={{ base: "full", md: "90%" }}>
 						<InputLeftElement display="flex" justifyContent="center" alignItems="center" p={7} h="full">
-							<Icon as={BiSearch} color="gray.400" />
+							<Icon as={BiSearch} color="gray.400" boxSize={7} />
 						</InputLeftElement>
 						<Input
 							type="text"
@@ -70,7 +78,10 @@ export default function Discover() {
 							_hover={{ borderColor: "gray.500" }}
 							_focus={{ backgroundColor: "white", shadow: "0px 4px 10px 3px rgba(0, 0, 0, 0.11)" }}
 							p={7}
-							pl={10}
+							pl={12}
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+							onKeyDown={onEnter}
 						/>
 					</InputGroup>
 				</Stack>
