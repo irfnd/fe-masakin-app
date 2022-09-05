@@ -1,11 +1,15 @@
+import useNewRecipe from "hooks/useNewRecipe";
+
 // Styles + Icons
-import { Box, Flex, Stack, Text, Divider, Image, AspectRatio, Button } from "@chakra-ui/react";
+import { Box, Flex, Stack, Text, Divider, Image, AspectRatio, Button, Skeleton } from "@chakra-ui/react";
 
 // Components + Images
 import CustomContainer from "components/layouts/CustomContainer";
-import DiscoverImg from "assets/images/discover.jpg";
+import RecipePlaceholder from "assets/images/recipe-placeholder.png";
 
 export default function NewRecipe() {
+	const { data, loading } = useNewRecipe();
+
 	return (
 		<CustomContainer position="relative">
 			<Flex direction={{ base: "column", md: "row" }} py={{ base: 10, md: "60px" }} px={{ base: 5, md: 0 }}>
@@ -49,46 +53,60 @@ export default function NewRecipe() {
 							align={{ base: "center", md: "start" }}
 							w={{ base: "full", sm: "80%", md: "50%" }}
 							gap={4}
+							order={{ base: 2, md: 1 }}
 						>
-							<Text
-								color="purple.900"
-								fontWeight="semibold"
-								fontSize={{
-									base: "2xl",
-									sm: "3xl",
-									md: 28,
-									lg: 40,
-									xl: 48,
-								}}
-								w="full"
-							>
-								Healthy Bone Broth Ramen (Quick & Easy)
-							</Text>
-							<Divider borderColor="gray.800" w="20%" />
-							<Text fontSize={{ base: 16, md: 18, lg: 20 }}>
-								Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in a hurry? That&apos;s right!
-							</Text>
-							<Button
-								bg="yellow.400"
-								fontSize={16}
-								fontWeight="medium"
-								color="white"
-								_hover={{ bg: "yellow.500" }}
-								_active={{ bg: "yellow.400" }}
-								w={{ base: "full", md: "fit-content" }}
-								py={7}
-								px={10}
-							>
-								Learn More
-							</Button>
+							<Skeleton w="full" isLoaded={!loading}>
+								<Text
+									color="purple.900"
+									fontWeight="semibold"
+									fontSize={{
+										base: "2xl",
+										sm: "3xl",
+										md: 28,
+										lg: 40,
+										xl: 48,
+									}}
+									w="full"
+								>
+									{data?.name}
+								</Text>
+							</Skeleton>
+							<Divider borderColor="gray.800" w={{ base: "full", sm: "50%", md: "20%" }} />
+							<Skeleton w="full" isLoaded={!loading}>
+								<Text fontSize={{ base: 16, md: 18, lg: 20 }}>{data?.shortDesc}</Text>
+							</Skeleton>
+							<Skeleton w="full" isLoaded={!loading}>
+								<Button
+									bg="yellow.400"
+									fontSize={16}
+									fontWeight="medium"
+									color="white"
+									_hover={{ bg: "yellow.500" }}
+									_active={{ bg: "yellow.400" }}
+									w={{ base: "full", md: "fit-content" }}
+									py={7}
+									px={10}
+								>
+									Learn More
+								</Button>
+							</Skeleton>
 						</Flex>
 						<Flex
 							justify={{ base: "center", md: "end" }}
 							align="center"
 							w={{ base: "full", sm: "80%", md: "50%" }}
+							order={{ base: 1, md: 2 }}
 						>
 							<AspectRatio w="450px" ratio={1}>
-								<Image src={DiscoverImg} rounded="2xl" alt="Photo Section 1" objectFit="cover" />
+								<Skeleton w="full" isLoaded={!loading}>
+									<Image
+										src={data?.photo || RecipePlaceholder}
+										alt={data?.photoName || data?.name}
+										objectFit="cover"
+										boxSize="full"
+										rounded="2xl"
+									/>
+								</Skeleton>
 							</AspectRatio>
 						</Flex>
 					</Flex>

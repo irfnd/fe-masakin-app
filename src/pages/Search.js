@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import useSearch from "hooks/useSearch";
 
 // Styles + Icons
 import { Flex, Heading, Text } from "@chakra-ui/react";
@@ -19,18 +18,11 @@ export default function Search() {
 		order: query.get("order") || "desc",
 	});
 	const filter = useMemo(() => updateQuery(queryParams), [queryParams]);
-	const { data } = useSearch(filter);
 
 	return (
 		<FullLayout title="Search">
-			<CustomContainer minH="100vh">
-				<Flex
-					direction="column"
-					pt={{ base: "120px", md: "140px" }}
-					pb={{ base: 10, md: "60px" }}
-					px={{ base: 5, md: 0 }}
-					gap={6}
-				>
+			<CustomContainer>
+				<Flex direction="column" pt={{ base: "120px", md: "140px" }} pb="120px" px={{ base: 5, md: 0 }} gap={6}>
 					<Heading
 						textAlign={{ base: "center", md: "start" }}
 						color="purple.800"
@@ -50,11 +42,8 @@ export default function Search() {
 						>
 							{queryParams.search === "" ? "All Recipe" : `Show results of "${queryParams.search}"`}
 						</Text>
-						<Text color="gray.500" fontWeight="medium" fontSize={16}>
-							{data?.results?.data?.totalRows && `${data?.results?.data?.totalRows} Recipes`}
-						</Text>
 					</Flex>
-					<SearchRecipeList recipes={data} />
+					<SearchRecipeList filter={filter} />
 				</Flex>
 			</CustomContainer>
 		</FullLayout>
