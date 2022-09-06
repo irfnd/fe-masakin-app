@@ -1,7 +1,14 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "helpers/validations";
+import { useCookies } from "react-cookie";
+import cookiesOptions from "helpers/cookies";
+import crypto from "helpers/crypto";
+import auth from "helpers/axios/auth";
+import Swal from "sweetalert2";
+import useCapitalizeError from "hooks/useCapitalizeError";
 
 // Styles + Icons
 import { Flex, Heading, Text, Divider, Button, Link } from "@chakra-ui/react";
@@ -10,13 +17,33 @@ import { Flex, Heading, Text, Divider, Button, Link } from "@chakra-ui/react";
 import Input from "components/inputs/Input";
 
 export default function LoginForm() {
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [cookie, setCookie] = useCookies(["user"]);
+
 	const navigate = useNavigate();
 	const formOptions = { resolver: yupResolver(LoginSchema) };
 	const methods = useForm(formOptions);
 
-	const onSubmit = (data) => {
-		const { agreeTerms, ...selectedData } = data;
-		console.log(selectedData);
+	const onSubmit = ({ agreeTerms, ...data }) => {
+		setIsSubmitting(true);
+		auth
+			.login(data)
+			.then((res) => {
+				const userEncrypted = crypto.encryptData(res?.results);
+				Swal.fire({
+					icon: "success",
+					title: "Login Successfully",
+					text: "You have successfully logged in",
+				}).then((ok) => (ok.isConfirmed ? setCookie("user", userEncrypted, cookiesOptions) : null));
+			})
+			.catch((err) => {
+				Swal.fire({
+					icon: "error",
+					title: "Failed to Login!",
+					text: `${useCapitalizeError(err?.response?.data)}`,
+				});
+			})
+			.finally(() => setIsSubmitting(false));
 	};
 
 	return (
@@ -40,7 +67,7 @@ export default function LoginForm() {
 						<Input type="password" name="password" label="Password" placeholder="Password" />
 						<Input type="checkbox" name="agreeTerms" placeholder="I agree to terms & conditions" />
 						<Button
-							isLoading={methods.formState.isSubmitting}
+							isLoading={isSubmitting}
 							type="submit"
 							bg="yellow.400"
 							fontSize={16}

@@ -1,8 +1,8 @@
 import axios from "axios";
-const { REACT_APP_MODE_ENV, REACT_APP_REST_API, REACT_APP_REST_API_LOCAL } = process.env;
+import env from "helpers/env";
 
-const api = axios.create({
-	baseURL: REACT_APP_MODE_ENV === "production" ? REACT_APP_REST_API : REACT_APP_REST_API_LOCAL,
-});
+const server = env.modeEnv === "production" ? env.restApi : env.restApiLocal;
+
+const api = axios.create({ baseURL: server });
 
 export default api;

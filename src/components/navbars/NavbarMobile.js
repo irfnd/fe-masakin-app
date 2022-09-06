@@ -34,7 +34,7 @@ export default function NavbarMobile(props) {
 						<Stack spacing={10} h="full" w="80%">
 							<NavbarMenu isMobile />
 							<Stack align="end" spacing={4} h="full">
-								{user ? <UserAvatar user={user} /> : <AuthButton />}
+								{user ? <UserAvatar user={user} onClose={onClose} /> : <AuthButton />}
 							</Stack>
 						</Stack>
 					</DrawerBody>

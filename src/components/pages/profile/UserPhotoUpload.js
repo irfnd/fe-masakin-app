@@ -1,26 +1,35 @@
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
+import Swal from "sweetalert2";
+import useCapitalizeError from "hooks/useCapitalizeError";
 
 // Styles + Icons
 import { Flex, Avatar, Text, Button, Icon } from "@chakra-ui/react";
-import { BiEditAlt, BiX, BiCheck, BiCloudUpload } from "react-icons/bi";
+import { BiX, BiCheck, BiCloudUpload } from "react-icons/bi";
 
 // Components + Images
 import ProfileImg from "assets/images/profile-placeholder.png";
 
 export default function UserPhotoUpload(props) {
-	const { photo, setPhoto, name, isUpload, setIsUpload } = props;
+	const { photo, name, isUpload, setIsUpload } = props;
 	const [selectedFile, setSelectedFile] = useState(null);
-	const [errors, setErrors] = useState(null);
 
 	const { register, setValue } = useFormContext();
 	const { onChange, formName } = register(name);
 
 	const onDrop = (accepted, rejected) => {
-		setErrors(null);
 		if (rejected.length > 0) {
-			setErrors(rejected[0].errors.map((error) => error.message));
+			const customError = rejected[0].errors.map(({ code }) => {
+				if (code === "file-invalid-type") return { message: "File type must be .jpg, .jpeg, or .png" };
+				if (code === "file-too-large") return { message: "File must be less than 2Mb" };
+				return null;
+			});
+			Swal.fire({
+				icon: "error",
+				title: "Upload failed!",
+				text: `${customError.map((el) => el).join("<br/>")}`,
+			});
 		} else {
 			setSelectedFile({ ...accepted[0], preview: URL.createObjectURL(accepted[0]) });
 			setValue("photo", accepted);
@@ -96,7 +105,6 @@ export default function UserPhotoUpload(props) {
 					shadow="md"
 					p={0}
 					onClick={() => {
-						setPhoto(true);
 						setIsUpload(!isUpload);
 						onClear();
 					}}
@@ -119,16 +127,9 @@ export default function UserPhotoUpload(props) {
 				shadow="md"
 				p={0}
 				onClick={() => {
-					if (photo) {
-						setPhoto(false);
-						setIsUpload(!isUpload);
-					}
-					if (selectedFile) {
-						onClear();
-					}
-					if (!selectedFile) {
-						setIsUpload(!isUpload);
-					}
+					if (photo) setIsUpload(!isUpload);
+					if (selectedFile) onClear();
+					if (!selectedFile) setIsUpload(!isUpload);
 				}}
 			>
 				<Icon as={BiX} boxSize={8} />

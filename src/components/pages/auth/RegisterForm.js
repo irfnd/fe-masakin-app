@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "helpers/validations";
+import auth from "helpers/axios/auth";
+import Swal from "sweetalert2";
+import useCapitalizeError from "hooks/useCapitalizeError";
 
 // Styles + Icons
 import { Flex, Heading, Text, Divider, Button, Link } from "@chakra-ui/react";
@@ -10,13 +14,30 @@ import { Flex, Heading, Text, Divider, Button, Link } from "@chakra-ui/react";
 import Input from "components/inputs/Input";
 
 export default function RegisterForm() {
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const navigate = useNavigate();
+
 	const formOptions = { resolver: yupResolver(RegisterSchema) };
 	const methods = useForm(formOptions);
 
-	const onSubmit = (data) => {
-		const { agreeTerms, confirmPassword, ...selectedData } = data;
-		console.log(selectedData);
+	const onSubmit = ({ agreeTerms, confirmPassword, ...data }) => {
+		setIsSubmitting(true);
+		auth
+			.register(data)
+			.then(() => {
+				Swal.fire({
+					icon: "success",
+					text: "Register Successfully",
+				}).then((result) => (result.isConfirmed ? navigate("/login", { replace: true }) : null));
+			})
+			.catch((err) => {
+				Swal.fire({
+					icon: "error",
+					title: "Failed to Register!",
+					text: `${useCapitalizeError(err?.response?.data)}`,
+				});
+			})
+			.finally(() => setIsSubmitting(false));
 	};
 
 	return (
@@ -48,7 +69,7 @@ export default function RegisterForm() {
 						/>
 						<Input type="checkbox" name="agreeTerms" placeholder="I agree to terms & conditions" />
 						<Button
-							isLoading={methods.formState.isSubmitting}
+							isLoading={isSubmitting}
 							type="submit"
 							bg="yellow.400"
 							fontSize={16}

@@ -1,0 +1,8 @@
+import CryptoJS from "crypto-js";
+
+const crypto = {
+	encryptData: (data) => CryptoJS.AES.encrypt(JSON.stringify(data), "masakin-app").toString(),
+	decryptData: (data) => JSON.parse(CryptoJS.AES.decrypt(data, "masakin-app").toString(CryptoJS.enc.Utf8)),
+};
+
+export default crypto;

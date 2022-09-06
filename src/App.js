@@ -6,15 +6,37 @@ import Register from "pages/auth/Register";
 import Login from "pages/auth/Login";
 import Profile from "pages/profile/Profile";
 import Search from "pages/Search";
+import { WhenLogin, WhenNotLogin } from "components/pages/Protected";
 
 export default function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
-			<Route path="login" element={<Login />} />
-			<Route path="register" element={<Register />} />
+			<Route
+				path="login"
+				element={
+					<WhenLogin>
+						<Login />
+					</WhenLogin>
+				}
+			/>
+			<Route
+				path="register"
+				element={
+					<WhenLogin>
+						<Register />
+					</WhenLogin>
+				}
+			/>
 			<Route path="profile">
-				<Route index element={<Profile />} />
+				<Route
+					index
+					element={
+						<WhenNotLogin>
+							<Profile />
+						</WhenNotLogin>
+					}
+				/>
 			</Route>
 			<Route path="search" element={<Search />} />
 		</Routes>

@@ -12,7 +12,7 @@ export default function Navbar(props) {
 	const { user } = props;
 
 	return (
-		<CustomContainer w="full" position="fixed" zIndex="sticky" top={0} py={5} bg="white" boxShadow="xl">
+		<CustomContainer w="full" position="fixed" zIndex={10} top={0} py={5} bg="white" boxShadow="xl">
 			<Flex>
 				<Spacer display={{ base: "flex", md: "none" }} />
 				<NavbarMobile user={user} />

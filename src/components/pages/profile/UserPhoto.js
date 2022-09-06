@@ -9,9 +9,9 @@ import { BiEditAlt } from "react-icons/bi";
 import UserPhotoUpload from "components/pages/profile/UserPhotoUpload";
 import ProfileImg from "assets/images/profile-placeholder.png";
 
-export default function UserPhoto() {
+export default function UserPhoto(props) {
+	const { user } = props;
 	const [isUpload, setIsUpload] = useState(false);
-	const [photo, setPhoto] = useState(false);
 
 	const methods = useForm();
 
@@ -22,13 +22,7 @@ export default function UserPhoto() {
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} style={{ display: "flex" }}>
 					{isUpload ? (
-						<UserPhotoUpload
-							photo={photo}
-							setPhoto={setPhoto}
-							name="photo"
-							isUpload={isUpload}
-							setIsUpload={setIsUpload}
-						/>
+						<UserPhotoUpload photo={user.photo} name="photo" isUpload={isUpload} setIsUpload={setIsUpload} />
 					) : (
 						<Flex position="relative" boxSize="140px">
 							<Flex>
@@ -56,7 +50,7 @@ export default function UserPhoto() {
 				</form>
 			</FormProvider>
 			<Text fontSize={18} fontWeight="semibold" color="purple.900">
-				Irfandi Iqbal Abimanyu
+				{user.name}
 			</Text>
 		</Flex>
 	);

@@ -1,8 +1,8 @@
 import useSWR from "swr";
-import searchRecipes from "helpers/axios/searchRecipes";
+import recipes from "helpers/axios/recipes";
 
 export default function usePopularForYou() {
-	const { data, error, mutate } = useSWR("popularForYou", () => searchRecipes.popularForYou());
+	const { data, error, mutate } = useSWR("popularForYou", () => recipes.popularForYou());
 	const loading = !data && !error;
 
 	return { data, mutate, loading };
