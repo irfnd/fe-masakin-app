@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
+import useCookieDecrypt from "hooks/useCookieDecrypt";
+import profile from "helpers/axios/profile";
+import useCapitalizeError from "hooks/useCapitalizeError";
+import Swal from "sweetalert2";
 
 // Styles + Icons
-import { Flex, Avatar, Text, Button, Icon } from "@chakra-ui/react";
+import { Flex, Image, Text, Button, Icon } from "@chakra-ui/react";
 import { BiEditAlt } from "react-icons/bi";
 
 // Components + Images
@@ -11,22 +16,99 @@ import ProfileImg from "assets/images/profile-placeholder.png";
 
 export default function UserPhoto(props) {
 	const { user } = props;
+	const { token } = useCookieDecrypt();
 	const [isUpload, setIsUpload] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
 
 	const methods = useForm();
 
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = ({ photo }) => {
+		const formdata = new FormData();
+		formdata.append("photo", photo ? photo[0] : "");
+		setLoading(true);
+		profile
+			.uploadPhoto(token.data.accessToken, formdata)
+			.then((res) => {
+				Swal.fire({
+					icon: "success",
+					title: "Upload Successfully",
+					text: "You have successfully update your photo",
+				}).then((ok) => (ok.isConfirmed ? navigate("/profile") : null));
+			})
+			.catch((err) => {
+				Swal.fire({
+					icon: "error",
+					title: "Failed to Login!",
+					text: `${useCapitalizeError(err?.response?.data)}`,
+				});
+			})
+			.finally(() => {
+				setIsUpload(false);
+				setLoading(false);
+			});
+	};
+
+	const onDelete = () => {
+		setLoading(true);
+		Swal.fire({
+			icon: "question",
+			title: "Delete Photo",
+			text: "Are you sure to delete photo?",
+			showCancelButton: true,
+			confirmButtonText: "Sure",
+			cancelButtonText: "No",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				profile
+					.deletePhoto(token.data.accessToken)
+					.then(() => {
+						Swal.fire({
+							icon: "success",
+							title: "Delete Successfully",
+							text: "You have successfully update your photo",
+						}).then((ok) => {
+							if (ok.isConfirmed) {
+								user.deleteUser("user");
+								token.deleteToken("token");
+								return navigate("/profile");
+							}
+							return null;
+						});
+					})
+					.catch((err) => {
+						Swal.fire({
+							icon: "error",
+							title: "Failed to Delete Photo!",
+							text: `${useCapitalizeError(err?.response?.data)}`,
+						});
+					})
+					.finally(() => {
+						setIsUpload(false);
+						setLoading(false);
+					});
+			}
+			return null;
+		});
+	};
 
 	return (
 		<Flex direction="column" align="center" gap={6}>
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} style={{ display: "flex" }}>
 					{isUpload ? (
-						<UserPhotoUpload photo={user.photo} name="photo" isUpload={isUpload} setIsUpload={setIsUpload} />
+						<UserPhotoUpload
+							photo={user.photo}
+							name="photo"
+							isUpload={isUpload}
+							setIsUpload={setIsUpload}
+							onDelete={onDelete}
+							loading={loading}
+						/>
 					) : (
-						<Flex position="relative" boxSize="140px">
+						<Flex position="relative" boxSize="140px" rounded="full" borderColor="orange.400" borderWidth={2}>
 							<Flex>
-								<Avatar boxSize="full" borderWidth={2} borderColor="orange.400" src={ProfileImg} />
+								<Image rounded="full" boxSize="full" objectFit="cover" src={user.photo || ProfileImg} />
 							</Flex>
 							<Button
 								type="button"

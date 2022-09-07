@@ -6,5 +6,5 @@ export default function useSearch(filter) {
 	const { data, error, mutate } = useSWR("search", () => recipes.search(filter), swrOption);
 	const loading = !data && !error;
 
-	return { data, mutate, loading };
+	return { data, mutate, loading, error };
 }

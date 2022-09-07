@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import useCookieDecrypt from "hooks/useCookieDecrypt";
 import Swal from "sweetalert2";
 
 // Styles + Icons
@@ -10,8 +10,8 @@ import { BiUser, BiLogOut } from "react-icons/bi";
 import ProfileImg from "assets/images/profile-placeholder.png";
 
 export default function UserAvatar(props) {
-	const { user, onClose } = props;
-	const [cookie, setCookie, removeCookie] = useCookies(["user"]);
+	const { onClose } = props;
+	const { user, token } = useCookieDecrypt();
 	const navigate = useNavigate();
 
 	const onLogout = () => {
@@ -25,7 +25,8 @@ export default function UserAvatar(props) {
 			cancelButtonText: "No",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				removeCookie("user");
+				user.deleteUser("user");
+				token.deleteToken("token");
 				return navigate("/register");
 			}
 			return null;
@@ -37,13 +38,13 @@ export default function UserAvatar(props) {
 			<Flex>
 				<Text>Hi,</Text>
 				<Text ms={1} fontWeight="semibold" color="purple.900">
-					{user.name.split(" ")[0]}
+					{user?.data?.name?.split(" ")[0]}
 				</Text>
 			</Flex>
 			<Box>
 				<Menu isLazy>
 					<MenuButton>
-						<Avatar boxSize={10} borderWidth={2} borderColor="orange.400" src={ProfileImg} />
+						<Avatar boxSize={10} borderWidth={2} borderColor="orange.400" src={user?.data?.photo || ProfileImg} />
 					</MenuButton>
 					<MenuList mt={4}>
 						<MenuItem

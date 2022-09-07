@@ -5,5 +5,5 @@ export default function useNewRecipe() {
 	const { data, error, mutate } = useSWR("newRecipe", () => recipes.newRecipe());
 	const loading = !data && !error;
 
-	return { data, mutate, loading };
+	return { data, mutate, loading, error };
 }

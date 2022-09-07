@@ -1,3 +1,7 @@
+import { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useCookieDecrypt from "hooks/useCookieDecrypt";
+
 // Components
 import FullLayout from "components/layouts/FullLayout";
 import Discover from "components/pages/home/Discover";

@@ -12,7 +12,7 @@ export default function RecipeTabs() {
 
 	return (
 		<Flex w="full">
-			<Tabs variant="unstyled" w="full" isFitted={tabsFitted}>
+			<Tabs variant="unstyled" w="full" isFitted={tabsFitted} isLazy>
 				<TabList display="flex" py={4} borderBottomWidth={1} borderColor="gray.200" gap={{ base: 0, md: 4 }}>
 					<Tab
 						fontSize={{ base: 13, sm: 14, md: 16, lg: 18 }}
@@ -28,7 +28,7 @@ export default function RecipeTabs() {
 						color="gray.500"
 						_selected={{ color: "purple.900" }}
 					>
-						Saved Recipe
+						Liked Recipe
 					</Tab>
 					<Tab
 						fontSize={{ base: 13, sm: 14, md: 16, lg: 18 }}
@@ -36,7 +36,7 @@ export default function RecipeTabs() {
 						color="gray.500"
 						_selected={{ color: "purple.900" }}
 					>
-						Liked Recipe
+						Saved Recipe
 					</Tab>
 				</TabList>
 
@@ -45,10 +45,10 @@ export default function RecipeTabs() {
 						<MyRecipeTab />
 					</TabPanel>
 					<TabPanel>
-						<SavedRecipeTab />
+						<LikedRecipeTab />
 					</TabPanel>
 					<TabPanel>
-						<LikedRecipeTab />
+						<SavedRecipeTab />
 					</TabPanel>
 				</TabPanels>
 			</Tabs>

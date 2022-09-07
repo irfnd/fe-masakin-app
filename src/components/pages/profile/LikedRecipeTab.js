@@ -1,27 +1,28 @@
+import useCookieDecrypt from "hooks/useCookieDecrypt";
+import useLikedRecipe from "hooks/useLikedRecipe";
+
 // Styles + Icons
-import { Box, Flex, SimpleGrid, Text, Image } from "@chakra-ui/react";
+import { Flex, SimpleGrid, Spinner, Skeleton } from "@chakra-ui/react";
 
 // Components + Images
-import DiscoverImg from "assets/images/discover.jpg";
+import ProfileRecipe from "components/cards/ProfileRecipe";
 
 export default function LikedRecipeTab() {
+	const { token } = useCookieDecrypt();
+	const { data, loading } = useLikedRecipe(token.data.accessToken);
+
+	if (loading) {
+		return (
+			<Flex justify="center" w="full" py={10}>
+				<Spinner size="xl" thickness="4px" color="orange.400" />
+			</Flex>
+		);
+	}
+
 	return (
 		<SimpleGrid columns={{ base: 1, sm: 2, md: 3, xl: 4 }} spacing={8} w="full">
-			{[...Array(6)].map((el, i) => (
-				<Flex key={`liked-${i}`} position="relative" cursor="pointer">
-					<Box
-						position="absolute"
-						bgGradient="linear(transparent, rgba(0, 0, 0, 0.5) 80%)"
-						rounded="2xl"
-						boxSize="full"
-					>
-						{" "}
-					</Box>
-					<Text position="absolute" bottom={0} color="white" fontSize={20} fontWeight="medium" mb={5} ml={5}>
-						Chicken Kare
-					</Text>
-					<Image src={DiscoverImg} rounded="2xl" alt="Photo Section 1" objectFit="cover" />
-				</Flex>
+			{data.map((el) => (
+				<ProfileRecipe key={`liked-recipe-${el.id}`} recipe={el} />
 			))}
 		</SimpleGrid>
 	);

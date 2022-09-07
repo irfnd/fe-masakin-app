@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "helpers/validations";
-import { useCookies } from "react-cookie";
-import cookiesOptions from "helpers/cookies";
-import crypto from "helpers/crypto";
+import Cookies from "js-cookie";
 import auth from "helpers/axios/auth";
 import Swal from "sweetalert2";
 import useCapitalizeError from "hooks/useCapitalizeError";
@@ -18,7 +16,6 @@ import Input from "components/inputs/Input";
 
 export default function LoginForm() {
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [cookie, setCookie] = useCookies(["user"]);
 
 	const navigate = useNavigate();
 	const formOptions = { resolver: yupResolver(LoginSchema) };
@@ -29,12 +26,11 @@ export default function LoginForm() {
 		auth
 			.login(data)
 			.then((res) => {
-				const userEncrypted = crypto.encryptData(res?.results);
 				Swal.fire({
 					icon: "success",
 					title: "Login Successfully",
 					text: "You have successfully logged in",
-				}).then((ok) => (ok.isConfirmed ? setCookie("user", userEncrypted, cookiesOptions) : null));
+				}).then((ok) => (ok.isConfirmed ? navigate("/", { replace: true }) : null));
 			})
 			.catch((err) => {
 				Swal.fire({

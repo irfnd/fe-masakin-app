@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import useCookieDecrypt from "hooks/useCookieDecrypt";
 
 export function WhenNotLogin(props) {
 	const { children } = props;
-	const [cookie] = useCookies(["user"]);
+	const { user } = useCookieDecrypt();
 
-	if (!cookie.user) {
+	if (!user.data) {
 		return <Navigate to="/register" replace />;
 	}
 	return children;
@@ -13,9 +13,9 @@ export function WhenNotLogin(props) {
 
 export function WhenLogin(props) {
 	const { children } = props;
-	const [cookie] = useCookies(["user"]);
+	const { user } = useCookieDecrypt();
 
-	if (cookie.user) {
+	if (user.data) {
 		return <Navigate to="/" replace />;
 	}
 	return children;
