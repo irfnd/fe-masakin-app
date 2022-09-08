@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { CookiesProvider } from "react-cookie";
 import "helpers/axios/api";
 
 // Fonts
@@ -25,11 +24,9 @@ import theme from "styles/theme";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<ChakraProvider theme={theme}>
-		<CookiesProvider>
 			<BrowserRouter>
 				<App />
 			</BrowserRouter>
-		</CookiesProvider>
 	</ChakraProvider>
 );
 
