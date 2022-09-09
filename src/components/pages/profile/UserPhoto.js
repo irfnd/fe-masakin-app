@@ -37,8 +37,9 @@ export default function UserPhoto(props) {
 					text: "You have successfully update your photo",
 				}).then((ok) => {
 					if (ok.isConfirmed) {
-						const getUser = { ...user.data, photo: res.results.photo, photoName: res.results.photoName };
-						user.setUser(JSON.stringify(crypto.encryptData(getUser)));
+						const getUser = { ...newUser.data, photo: res.results.photo, photoName: res.results.photoName };
+						newUser.deleteUser();
+						newUser.setUser(JSON.stringify(crypto.encryptData(getUser)));
 						return navigate("/profile");
 					}
 					return null;
@@ -77,8 +78,9 @@ export default function UserPhoto(props) {
 							text: "You have successfully update your photo",
 						}).then((ok) => {
 							if (ok.isConfirmed) {
-								const getUser = { ...user.data, photo: res.results.photo, photoName: res.results.photoName };
-								user.setUser(JSON.stringify(crypto.encryptData(getUser)));
+								const getUser = { ...newUser.data, photo: res.results.photo, photoName: res.results.photoName };
+								newUser.deleteUser();
+								newUser.setUser(JSON.stringify(crypto.encryptData(getUser)));
 								return navigate("/profile");
 							}
 							return null;
