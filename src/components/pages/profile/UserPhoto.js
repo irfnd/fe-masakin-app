@@ -38,7 +38,6 @@ export default function UserPhoto(props) {
 				}).then((ok) => {
 					if (ok.isConfirmed) {
 						const getUser = { ...newUser.data, photo: res.results.photo, photoName: res.results.photoName };
-						newUser.deleteUser();
 						newUser.setUser(crypto.encryptData(JSON.stringify(getUser)));
 						return navigate("/profile");
 					}
@@ -79,7 +78,6 @@ export default function UserPhoto(props) {
 						}).then((ok) => {
 							if (ok.isConfirmed) {
 								const getUser = { ...newUser.data, photo: res.results.photo, photoName: res.results.photoName };
-								newUser.deleteUser();
 								newUser.setUser(crypto.encryptData(JSON.stringify(getUser)));
 								return navigate("/profile");
 							}
