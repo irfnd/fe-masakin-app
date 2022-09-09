@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import useGetDataUser from "hooks/useGetDataUser";
+import crypto from "helpers/crypto";
 import profile from "helpers/axios/profile";
 import useCapitalizeError from "hooks/useCapitalizeError";
 import Swal from "sweetalert2";
@@ -16,7 +17,7 @@ import ProfileImg from "assets/images/profile-placeholder.png";
 
 export default function UserPhoto(props) {
 	const { user } = props;
-	const { token } = useGetDataUser();
+	const { user: newUser, token } = useGetDataUser();
 	const [isUpload, setIsUpload] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
@@ -34,7 +35,14 @@ export default function UserPhoto(props) {
 					icon: "success",
 					title: "Upload Successfully",
 					text: "You have successfully update your photo",
-				}).then((ok) => (ok.isConfirmed ? navigate("/profile") : null));
+				}).then((ok) => {
+					if (ok.isConfirmed) {
+						const getUser = { ...user.data, photo: res.results.photo, photoName: res.results.photoName };
+						user.setUser(JSON.stringify(crypto.encryptData(getUser)));
+						return navigate("/profile");
+					}
+					return null;
+				});
 			})
 			.catch((err) => {
 				Swal.fire({
@@ -62,15 +70,15 @@ export default function UserPhoto(props) {
 			if (result.isConfirmed) {
 				profile
 					.deletePhoto(token.data.accessToken)
-					.then(() => {
+					.then((res) => {
 						Swal.fire({
 							icon: "success",
 							title: "Delete Successfully",
 							text: "You have successfully update your photo",
 						}).then((ok) => {
 							if (ok.isConfirmed) {
-								user.deleteUser("user");
-								token.deleteToken("token");
+								const getUser = { ...user.data, photo: res.results.photo, photoName: res.results.photoName };
+								user.setUser(JSON.stringify(crypto.encryptData(getUser)));
 								return navigate("/profile");
 							}
 							return null;

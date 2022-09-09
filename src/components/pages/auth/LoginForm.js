@@ -37,7 +37,7 @@ export default function LoginForm() {
 				}).then((ok) => {
 					if (ok.isConfirmed) {
 						user.setUser(crypto.encryptData(JSON.stringify(userData)));
-						token.setToken(crypto.encryptData(JSON.stringify(userData)));
+						token.setToken(crypto.encryptData(JSON.stringify(tokenData)));
 						return navigate("/", { replace: true });
 					}
 					return null;
