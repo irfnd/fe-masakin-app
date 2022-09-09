@@ -1,9 +1,9 @@
 import { useFormContext } from "react-hook-form";
 
 // Styles + Icons
-import { Input, FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
+import { Textarea, FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
 
-export default function InputText(props) {
+export default function InputTextarea(props) {
 	const { name, label, placeholder, isGray } = props;
 	const { register, formState } = useFormContext();
 	const { errors } = formState;
@@ -15,7 +15,7 @@ export default function InputText(props) {
 					{label}
 				</FormLabel>
 			)}
-			<Input
+			<Textarea
 				type="text"
 				placeholder={placeholder}
 				_placeholder={{ color: "gray.400" }}

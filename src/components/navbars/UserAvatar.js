@@ -15,7 +15,7 @@ export default function UserAvatar(props) {
 	const navigate = useNavigate();
 
 	const onLogout = () => {
-		onClose();
+		if (onClose) onClose();
 		Swal.fire({
 			icon: "question",
 			title: "Log out",
@@ -44,14 +44,19 @@ export default function UserAvatar(props) {
 			<Box>
 				<Menu isLazy>
 					<MenuButton>
-						<Avatar boxSize={10} borderWidth={2} borderColor="orange.400" src={user?.data?.photo || ProfileImg} />
+						<Avatar
+							boxSize={10}
+							borderWidth={2}
+							borderColor="orange.400"
+							src={user?.data?.photo || ProfileImg}
+						/>
 					</MenuButton>
 					<MenuList mt={4}>
 						<MenuItem
 							color="purple.900"
 							icon={<BiUser size={18} />}
 							onClick={() => {
-								onClose();
+								if (onClose) onClose();
 								navigate("/profile");
 							}}
 						>

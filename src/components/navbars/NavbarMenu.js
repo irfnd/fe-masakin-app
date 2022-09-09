@@ -1,4 +1,5 @@
 import { useMatch, useNavigate } from "react-router-dom";
+import useGetDataUser from "hooks/useGetDataUser";
 
 // Styles + Icons
 import { Stack, HStack, Button, Link } from "@chakra-ui/react";
@@ -24,7 +25,24 @@ export default function NavbarMenu(props) {
 }
 
 function Menu() {
+	const { user } = useGetDataUser();
 	const navigate = useNavigate();
+
+	if (!user.data) {
+		return (
+			<Button
+				as={Link}
+				variant="link"
+				color="purple.900"
+				fontSize={16}
+				fontWeight="medium"
+				textDecoration={useMatch("/") ? "underline" : "none"}
+				onClick={() => navigate("/")}
+			>
+				Home
+			</Button>
+		);
+	}
 
 	return (
 		<>

@@ -65,8 +65,8 @@ export default function UserPhoto() {
 			showCancelButton: true,
 			confirmButtonText: "Sure",
 			cancelButtonText: "No",
-		}).then((result) => {
-			if (result.isConfirmed) {
+		}).then((ok) => {
+			if (ok.isConfirmed) {
 				profile
 					.deletePhoto(token.data.accessToken)
 					.then((res) => {
@@ -74,8 +74,8 @@ export default function UserPhoto() {
 							icon: "success",
 							title: "Delete Successfully",
 							text: "You have successfully update your photo",
-						}).then((ok) => {
-							if (ok.isConfirmed) {
+						}).then((ok2) => {
+							if (ok2.isConfirmed) {
 								const getUser = { ...user.data, photo: res.results.photo, photoName: res.results.photoName };
 								user.setUser(crypto.encryptData(JSON.stringify(getUser)));
 								return navigate("/profile");
@@ -105,7 +105,7 @@ export default function UserPhoto() {
 				<form onSubmit={methods.handleSubmit(onSubmit)} style={{ display: "flex" }}>
 					{isUpload ? (
 						<UserPhotoUpload
-							photo={user.photo}
+							photo={user.data.photo}
 							name="photo"
 							isUpload={isUpload}
 							setIsUpload={setIsUpload}
@@ -115,7 +115,7 @@ export default function UserPhoto() {
 					) : (
 						<Flex position="relative" boxSize="140px" rounded="full" borderColor="orange.400" borderWidth={2}>
 							<Flex>
-								<Image rounded="full" boxSize="full" objectFit="cover" src={user.photo || ProfileImg} />
+								<Image rounded="full" boxSize="full" objectFit="cover" src={user.data.photo || ProfileImg} />
 							</Flex>
 							<Button
 								type="button"

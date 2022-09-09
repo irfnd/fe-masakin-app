@@ -20,7 +20,7 @@ import UserAvatar from "components/navbars/UserAvatar";
 import AuthButton from "components/navbars/AuthButton";
 
 export default function NavbarMobile() {
-	const { user } = useGetDataUser;
+	const { user } = useGetDataUser();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
@@ -36,7 +36,7 @@ export default function NavbarMobile() {
 						<Stack spacing={10} h="full" w="80%">
 							<NavbarMenu isMobile />
 							<Stack align="end" spacing={4} h="full">
-								{user?.data ? <UserAvatar onClose={onClose} /> : <AuthButton />}
+								{user.data ? <UserAvatar onClose={onClose} /> : <AuthButton />}
 							</Stack>
 						</Stack>
 					</DrawerBody>

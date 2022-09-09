@@ -129,7 +129,6 @@ export default function UserPhotoUpload(props) {
 					if (photo) {
 						onClear();
 						onDelete();
-						setIsUpload(!isUpload);
 					}
 					if (selectedFile) onClear();
 					if (!selectedFile) setIsUpload(!isUpload);

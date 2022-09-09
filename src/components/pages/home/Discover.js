@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Styles + Icons
 import {
@@ -85,7 +85,11 @@ export default function Discover() {
 						/>
 					</InputGroup>
 				</Stack>
-				<Flex justify={{ base: "center", md: "end" }} align="center" w={{ base: "full", sm: "80%", md: "50%" }}>
+				<Flex
+					justify={{ base: "center", md: "end" }}
+					align="center"
+					w={{ base: "full", sm: "80%", md: "50%" }}
+				>
 					<AspectRatio w="450px" ratio={1}>
 						<Image src={DiscoverImg} rounded="2xl" alt="Photo Section 1" objectFit="cover" />
 					</AspectRatio>

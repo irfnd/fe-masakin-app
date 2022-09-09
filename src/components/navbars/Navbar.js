@@ -20,7 +20,7 @@ export default function Navbar() {
 				<NavbarMobile />
 				<NavbarMenu />
 				<Spacer display={{ base: "none", md: "flex" }} />
-				<HStack display={{ base: "none", md: "flex" }}>{user?.data ? <UserAvatar /> : <AuthButton />}</HStack>
+				<HStack display={{ base: "none", md: "flex" }}>{user.data ? <UserAvatar /> : <AuthButton />}</HStack>
 			</Flex>
 		</CustomContainer>
 	);
