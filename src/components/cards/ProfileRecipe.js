@@ -9,24 +9,10 @@ export default function ProfileRecipe(props) {
 
 	return (
 		<Flex position="relative" h={210} cursor="pointer">
-			<Box
-				position="absolute"
-				bgGradient="linear(transparent, rgba(0, 0, 0, 0.5) 80%)"
-				rounded="2xl"
-				boxSize="full"
-			>
+			<Box position="absolute" bgGradient="linear(transparent, rgba(0, 0, 0, 0.5) 80%)" rounded="2xl" boxSize="full">
 				{" "}
 			</Box>
-			<Text
-				position="absolute"
-				bottom={0}
-				color="white"
-				fontSize={20}
-				fontWeight="medium"
-				mx={5}
-				mb={5}
-				noOfLines={1}
-			>
+			<Text position="absolute" bottom={0} color="white" fontSize={20} fontWeight="medium" mx={5} mb={5} noOfLines={1}>
 				{recipe.name}
 			</Text>
 			<Image

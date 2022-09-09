@@ -60,18 +60,8 @@ export default function RegisterForm() {
 						<Input name="name" label="Name" placeholder="Enter your name" />
 						<Input type="email" name="email" label="Email address*" placeholder="Enter your email address" />
 						<Input label="Phone Number" name="phoneNumber" placeholder="Enter your phone number" />
-						<Input
-							type="password"
-							name="password"
-							label="Create New Password"
-							placeholder="Create new password"
-						/>
-						<Input
-							type="password"
-							name="confirmPassword"
-							label="Confirm Password"
-							placeholder="Confirm Password"
-						/>
+						<Input type="password" name="password" label="Create New Password" placeholder="Create new password" />
+						<Input type="password" name="confirmPassword" label="Confirm Password" placeholder="Confirm Password" />
 						<Input type="checkbox" name="agreeTerms" placeholder="I agree to terms & conditions" />
 						<Button
 							isLoading={isSubmitting}

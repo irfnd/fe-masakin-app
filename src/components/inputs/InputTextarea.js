@@ -9,7 +9,7 @@ export default function InputTextarea(props) {
 	const { errors } = formState;
 
 	return (
-		<FormControl display="flex" flexDirection="column" gap={2} isInvalid={errors[name]}>
+		<FormControl display="flex" flexDirection="column" h="full" gap={2} isInvalid={errors[name]}>
 			{label && (
 				<FormLabel fontSize={16} fontWeight="medium" color="gray.600">
 					{label}
@@ -24,9 +24,10 @@ export default function InputTextarea(props) {
 				color="gray.600"
 				borderColor="gray.400"
 				focusBorderColor={!errors[name] ? "yellow.400" : "red.500"}
+				h="full"
+				p={7}
 				_hover={{ borderColor: "gray.500" }}
 				_focus={{ shadow: "0px 4px 10px 3px rgba(0, 0, 0, 0.11)" }}
-				p={7}
 				{...register(name)}
 			/>
 			{errors[name] && <FormErrorMessage>{errors[name].message}</FormErrorMessage>}

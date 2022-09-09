@@ -44,12 +44,7 @@ export default function UserAvatar(props) {
 			<Box>
 				<Menu isLazy>
 					<MenuButton>
-						<Avatar
-							boxSize={10}
-							borderWidth={2}
-							borderColor="orange.400"
-							src={user?.data?.photo || ProfileImg}
-						/>
+						<Avatar boxSize={10} borderWidth={2} borderColor="orange.400" src={user?.data?.photo || ProfileImg} />
 					</MenuButton>
 					<MenuList mt={4}>
 						<MenuItem

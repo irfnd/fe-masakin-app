@@ -12,18 +12,8 @@ export default function AddRecipe() {
 	return (
 		<FullLayout title="Add Recipe">
 			<CustomContainer>
-				<Flex
-					direction="column"
-					pt={{ base: "120px", md: "140px" }}
-					pb="120px"
-					px={{ base: 5, md: 0 }}
-					gap={6}
-				>
-					<Heading
-						textAlign={{ base: "center", md: "start" }}
-						color="purple.800"
-						fontSize={{ base: "2xl", sm: "3xl" }}
-					>
+				<Flex direction="column" pt={{ base: "120px", md: "140px" }} pb="120px" px={{ base: 5, md: 0 }} gap={6}>
+					<Heading textAlign={{ base: "center", md: "start" }} color="purple.800" fontSize={{ base: "2xl", sm: "3xl" }}>
 						Add Recipe
 					</Heading>
 					<AddRecipeForm />

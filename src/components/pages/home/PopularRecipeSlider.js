@@ -15,13 +15,7 @@ export default function PopularRecipeSlider() {
 	const { data, loading } = usePopularRecipe();
 
 	return (
-		<Swiper
-			modules={[FreeMode]}
-			spaceBetween={20}
-			slidesPerView={TotalRows}
-			freeMode
-			style={{ width: "inherit" }}
-		>
+		<Swiper modules={[FreeMode]} spaceBetween={20} slidesPerView={TotalRows} freeMode style={{ width: "inherit" }}>
 			{data &&
 				data?.map((el) => (
 					<SwiperSlide key={el.id}>
@@ -35,15 +29,7 @@ export default function PopularRecipeSlider() {
 								>
 									{" "}
 								</Box>
-								<Text
-									position="absolute"
-									bottom={0}
-									color="white"
-									fontSize={20}
-									fontWeight="medium"
-									mb={5}
-									ml={5}
-								>
+								<Text position="absolute" bottom={0} color="white" fontSize={20} fontWeight="medium" mb={5} ml={5}>
 									{el.name}
 								</Text>
 								<AspectRatio w="450px" ratio={1} zIndex={-1}>
