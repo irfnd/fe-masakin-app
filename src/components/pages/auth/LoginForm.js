@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "helpers/validations";
-import Cookies from "js-cookie";
+import useGetDataUser from "hooks/useGetDataUser";
+import crypto from "helpers/crypto";
 import auth from "helpers/axios/auth";
 import Swal from "sweetalert2";
 import useCapitalizeError from "hooks/useCapitalizeError";
@@ -16,6 +17,7 @@ import Input from "components/inputs/Input";
 
 export default function LoginForm() {
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const { user, token } = useGetDataUser();
 
 	const navigate = useNavigate();
 	const formOptions = { resolver: yupResolver(LoginSchema) };
@@ -26,11 +28,20 @@ export default function LoginForm() {
 		auth
 			.login(data)
 			.then((res) => {
+				const { accessToken, refreshToken, ...userData } = res.results;
+				const tokenData = { accessToken: res.results.accessToken, refreshToken: res.results.refreshToken };
 				Swal.fire({
 					icon: "success",
 					title: "Login Successfully",
 					text: "You have successfully logged in",
-				}).then((ok) => (ok.isConfirmed ? navigate("/", { replace: true }) : null));
+				}).then((ok) => {
+					if (ok.isConfirmed) {
+						user.setUser(crypto.encryptData(userData));
+						token.setToken(crypto.encryptData(tokenData));
+						return navigate("/", { replace: true });
+					}
+					return null;
+				});
 			})
 			.catch((err) => {
 				Swal.fire({

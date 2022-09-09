@@ -1,4 +1,4 @@
-import useCookieDecrypt from "hooks/useCookieDecrypt";
+import useGetDataUser from "hooks/useGetDataUser";
 import { useTitle } from "react-use";
 
 // Components
@@ -7,7 +7,7 @@ import Footer from "components/footers/Footer";
 
 export default function FullLayout(props) {
 	const { title, children } = props;
-	const { user } = useCookieDecrypt();
+	const { user } = useGetDataUser();
 	useTitle(`${title} - Masakin App`);
 
 	return (

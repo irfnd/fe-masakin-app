@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
-import useCookieDecrypt from "hooks/useCookieDecrypt";
+import useGetDataUser from "hooks/useGetDataUser";
 import profile from "helpers/axios/profile";
 import useCapitalizeError from "hooks/useCapitalizeError";
 import Swal from "sweetalert2";
@@ -16,7 +16,7 @@ import ProfileImg from "assets/images/profile-placeholder.png";
 
 export default function UserPhoto(props) {
 	const { user } = props;
-	const { token } = useCookieDecrypt();
+	const { token } = useGetDataUser();
 	const [isUpload, setIsUpload] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
-import useCookieDecrypt from "hooks/useCookieDecrypt";
+import useGetDataUser from "hooks/useGetDataUser";
 
 export function WhenNotLogin(props) {
 	const { children } = props;
-	const { user } = useCookieDecrypt();
+	const { user } = useGetDataUser();
 
 	if (!user.data) {
 		return <Navigate to="/register" replace />;
@@ -13,7 +13,7 @@ export function WhenNotLogin(props) {
 
 export function WhenLogin(props) {
 	const { children } = props;
-	const { user } = useCookieDecrypt();
+	const { user } = useGetDataUser();
 
 	if (user.data) {
 		return <Navigate to="/" replace />;

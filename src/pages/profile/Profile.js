@@ -1,4 +1,4 @@
-import useCookieDecrypt from "hooks/useCookieDecrypt";
+import useGetDataUser from "hooks/useGetDataUser";
 
 // Styles + Icons
 import { Flex } from "@chakra-ui/react";
@@ -10,7 +10,7 @@ import UserPhoto from "components/pages/profile/UserPhoto";
 import RecipeTabs from "components/pages/profile/RecipeTabs";
 
 export default function Profile() {
-	const { user } = useCookieDecrypt();
+	const { user } = useGetDataUser();
 
 	return (
 		<FullLayout title="Profile">

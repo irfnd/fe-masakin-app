@@ -1,4 +1,4 @@
-import useCookieDecrypt from "hooks/useCookieDecrypt";
+import useGetDataUser from "hooks/useGetDataUser";
 import useLikedRecipe from "hooks/useLikedRecipe";
 
 // Styles + Icons
@@ -8,7 +8,7 @@ import { Flex, SimpleGrid, Spinner, Skeleton } from "@chakra-ui/react";
 import ProfileRecipe from "components/cards/ProfileRecipe";
 
 export default function LikedRecipeTab() {
-	const { token } = useCookieDecrypt();
+	const { token } = useGetDataUser();
 	const { data, loading } = useLikedRecipe(token.data.accessToken);
 
 	if (loading) {

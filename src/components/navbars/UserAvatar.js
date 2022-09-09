@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import useCookieDecrypt from "hooks/useCookieDecrypt";
+import useGetDataUser from "hooks/useGetDataUser";
 import Swal from "sweetalert2";
 
 // Styles + Icons
@@ -11,7 +11,7 @@ import ProfileImg from "assets/images/profile-placeholder.png";
 
 export default function UserAvatar(props) {
 	const { onClose } = props;
-	const { user, token } = useCookieDecrypt();
+	const { user, token } = useGetDataUser();
 	const navigate = useNavigate();
 
 	const onLogout = () => {
@@ -25,8 +25,8 @@ export default function UserAvatar(props) {
 			cancelButtonText: "No",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				user.deleteUser("user");
-				token.deleteToken("token");
+				user.deleteUser();
+				token.deleteToken();
 				return navigate("/register");
 			}
 			return null;

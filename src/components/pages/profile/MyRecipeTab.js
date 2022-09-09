@@ -1,4 +1,4 @@
-import useCookieDecrypt from "hooks/useCookieDecrypt";
+import useGetDataUser from "hooks/useGetDataUser";
 import useMyRecipe from "hooks/useMyRecipe";
 
 // Styles + Icons
@@ -8,7 +8,7 @@ import { Flex, SimpleGrid, Spinner } from "@chakra-ui/react";
 import ProfileRecipe from "components/cards/ProfileRecipe";
 
 export default function MyRecipeTab() {
-	const { token } = useCookieDecrypt();
+	const { token } = useGetDataUser();
 	const { data, loading, error } = useMyRecipe(token.data.accessToken);
 
 	if (loading) {
