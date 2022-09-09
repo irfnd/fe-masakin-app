@@ -15,9 +15,8 @@ import { BiEditAlt } from "react-icons/bi";
 import UserPhotoUpload from "components/pages/profile/UserPhotoUpload";
 import ProfileImg from "assets/images/profile-placeholder.png";
 
-export default function UserPhoto(props) {
-	const { user } = props;
-	const { user: newUser, token } = useGetDataUser();
+export default function UserPhoto() {
+	const { user, token } = useGetDataUser();
 	const [isUpload, setIsUpload] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
@@ -37,8 +36,8 @@ export default function UserPhoto(props) {
 					text: "You have successfully update your photo",
 				}).then((ok) => {
 					if (ok.isConfirmed) {
-						const getUser = { ...newUser.data, photo: res.results.photo, photoName: res.results.photoName };
-						newUser.setUser(crypto.encryptData(JSON.stringify(getUser)));
+						const getUser = { ...user.data, photo: res.results.photo, photoName: res.results.photoName };
+						user.setUser(crypto.encryptData(JSON.stringify(getUser)));
 						return navigate("/profile");
 					}
 					return null;
@@ -77,8 +76,8 @@ export default function UserPhoto(props) {
 							text: "You have successfully update your photo",
 						}).then((ok) => {
 							if (ok.isConfirmed) {
-								const getUser = { ...newUser.data, photo: res.results.photo, photoName: res.results.photoName };
-								newUser.setUser(crypto.encryptData(JSON.stringify(getUser)));
+								const getUser = { ...user.data, photo: res.results.photo, photoName: res.results.photoName };
+								user.setUser(crypto.encryptData(JSON.stringify(getUser)));
 								return navigate("/profile");
 							}
 							return null;

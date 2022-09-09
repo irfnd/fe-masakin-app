@@ -1,5 +1,3 @@
-import useGetDataUser from "hooks/useGetDataUser";
-
 // Styles + Icons
 import { Flex } from "@chakra-ui/react";
 
@@ -10,13 +8,11 @@ import UserPhoto from "components/pages/profile/UserPhoto";
 import RecipeTabs from "components/pages/profile/RecipeTabs";
 
 export default function Profile() {
-	const { user } = useGetDataUser();
-
 	return (
 		<FullLayout title="Profile">
 			<CustomContainer>
 				<Flex w="full" direction="column" align="center" gap={10} pt="140px" pb="120px">
-					<UserPhoto user={user.data} />
+					<UserPhoto />
 					<RecipeTabs />
 				</Flex>
 			</CustomContainer>

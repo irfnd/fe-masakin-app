@@ -1,4 +1,3 @@
-import useGetDataUser from "hooks/useGetDataUser";
 import { useTitle } from "react-use";
 
 // Components
@@ -7,12 +6,11 @@ import Footer from "components/footers/Footer";
 
 export default function FullLayout(props) {
 	const { title, children } = props;
-	const { user } = useGetDataUser();
 	useTitle(`${title} - Masakin App`);
 
 	return (
 		<main>
-			<Navbar user={user.data} />
+			<Navbar />
 			{children}
 			<Footer />
 		</main>
