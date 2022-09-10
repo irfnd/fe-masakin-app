@@ -7,6 +7,7 @@ import Login from "pages/auth/Login";
 import Profile from "pages/profile/Profile";
 import Search from "pages/Search";
 import AddRecipe from "pages/recipe/AddRecipe";
+import DetailRecipe from "pages/recipe/DetailRecipe";
 import { WhenLogin, WhenNotLogin } from "components/pages/Protected";
 
 export default function App() {
@@ -41,6 +42,7 @@ export default function App() {
 			</Route>
 			<Route path="search" element={<Search />} />
 			<Route path="recipe">
+				<Route path=":id" element={<DetailRecipe />} />
 				<Route
 					path="add"
 					element={
