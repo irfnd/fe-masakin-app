@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
+import dropzoneOptions from "helpers/dropzone";
 import Swal from "sweetalert2";
 
 // Styles + Icons
@@ -45,17 +46,7 @@ export default function UserPhotoUpload(props) {
 		setValue("photo", null);
 	};
 
-	const allowedFile = { "image/jpg": [".jpg"], "image/jpeg": [".jpeg"], "image/png": [".png"] };
-	const dropzoneOptions = {
-		onDrop,
-		multiple: false,
-		maxFiles: 1,
-		maxSize: 2 * 1000000,
-		accept: allowedFile,
-		noClick: true,
-		noKeyboard: true,
-	};
-	const { getRootProps, getInputProps, open } = useDropzone(dropzoneOptions);
+	const { getRootProps, getInputProps, open } = useDropzone(dropzoneOptions(onDrop));
 
 	return (
 		<Flex

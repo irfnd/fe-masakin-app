@@ -5,6 +5,7 @@ const setBearer = (token) => ({ headers: { Authorization: `Bearer ${token}` } })
 
 const recipes = {
 	search: (params) => api.get("/recipes", { params }).then((res) => res.data),
+	addRecipe: (token, data) => api.post("/recipes/", data, setBearer(token)).then((res) => res.data),
 	popularForYou: () => api.get("/recipes/popular").then((res) => res.data.results.data[0]),
 	newRecipe: () => api.get("/recipes/new", { params: paramNewRecipe }).then((res) => res.data.results.data.rows[0]),
 	popularRecipe: () => api.get("/recipes/popular").then((res) => res.data.results.data),
