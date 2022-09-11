@@ -14,13 +14,13 @@ export default function CommentContent(props) {
 	return (
 		<Flex direction="column" gap={10} boxSize="full">
 			<Flex direction="column" w="full" gap={token.data ? 8 : 6}>
-				<Skeleton isLoaded={!loading}>
+				<Skeleton rounded="md" isLoaded={!loading}>
 					<Text textAlign="left" fontSize={18} fontWeight="semibold" color="purple.800" w="full">
 						Comments
 					</Text>
 				</Skeleton>
 				{token.data && (
-					<Skeleton isLoaded={!loading}>
+					<Skeleton rounded="xl" isLoaded={!loading}>
 						<AddComment id={id} mutate={mutate} />
 					</Skeleton>
 				)}

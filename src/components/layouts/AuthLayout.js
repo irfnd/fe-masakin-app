@@ -1,11 +1,11 @@
 import { useTitle } from "react-use";
 
 // Styles + Icons
-import { Flex, Text, Icon } from "@chakra-ui/react";
-import { GiCook } from "react-icons/gi";
+import { Flex, Image } from "@chakra-ui/react";
 
 // Components + Images
 import BgLogin from "assets/images/background-login.jpg";
+import BrandLogo from "assets/images/brand-logo-1.png";
 
 export default function AuthLayout(props) {
 	const { title, children } = props;
@@ -25,10 +25,7 @@ export default function AuthLayout(props) {
 				w={{ base: "full", md: "50%" }}
 			>
 				<Flex direction="column" align="center">
-					<Icon as={GiCook} color="white" boxSize="100px" />
-					<Text fontFamily={`"Concert One", cursive`} fontSize={24} lineHeight={1} color="white" m={0}>
-						Masakin
-					</Text>
+					<Image src={BrandLogo} boxSize="140px" />
 				</Flex>
 			</Flex>
 			<Flex

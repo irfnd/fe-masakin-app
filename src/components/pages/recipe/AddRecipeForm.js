@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { AddRecipeSchema } from "helpers/validations";
 import useGetDataUser from "hooks/useGetDataUser";
 import useCapitalizeError from "hooks/useCapitalizeError";
 import { getIngredients, getSteps, getVideos } from "helpers/addRecipeFilter";
@@ -20,7 +22,9 @@ export default function AddRecipeForm() {
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 
+	const formOptions = { resolver: yupResolver(AddRecipeSchema) };
 	const methods = useForm({
+		...formOptions,
 		defaultValues: {
 			ingredients: [{ id: 1, text: "" }],
 			steps: [{ id: 1, step: "", video: "" }],

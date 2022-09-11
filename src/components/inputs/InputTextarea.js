@@ -30,6 +30,7 @@ export default function InputTextarea(props) {
 				_focus={{ shadow: "0px 4px 10px 3px rgba(0, 0, 0, 0.11)" }}
 				{...register(name)}
 			/>
+			{errors[name] && <FormErrorMessage>{errors[name].message}</FormErrorMessage>}
 		</FormControl>
 	);
 }

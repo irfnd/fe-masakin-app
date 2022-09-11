@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
 import useGetDataUser from "hooks/useGetDataUser";
 import useCheckRecipe from "hooks/useCheckRecipe";
+import useDateFormat from "hooks/useDateFormat";
 import recipes from "helpers/axios/recipes";
 
 // Styles + Icons
@@ -98,7 +98,7 @@ export default function SearchRecipeCard(props) {
 				</Flex>
 				<Flex gap={1} align="center" color="gray.600">
 					<Icon as={RiCalendarEventFill} boxSize="14px" />
-					<Text fontSize={14}>{moment(recipe.createdAt).format("MMMM DD, YYYY")}</Text>
+					<Text fontSize={14}>{useDateFormat(recipe.createdAt)}</Text>
 				</Flex>
 				{token.data && (
 					<Flex gap={4} pt={2}>

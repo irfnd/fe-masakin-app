@@ -30,17 +30,30 @@ function Menu() {
 
 	if (!user.data) {
 		return (
-			<Button
-				as={Link}
-				variant="link"
-				color="purple.900"
-				fontSize={16}
-				fontWeight="medium"
-				textDecoration={useMatch("/") ? "underline" : "none"}
-				onClick={() => navigate("/")}
-			>
-				Home
-			</Button>
+			<>
+				<Button
+					as={Link}
+					variant="link"
+					color="purple.900"
+					fontSize={16}
+					fontWeight="medium"
+					textDecoration={useMatch("/") ? "underline" : "none"}
+					onClick={() => navigate("/")}
+				>
+					Home
+				</Button>
+				<Button
+					as={Link}
+					variant="link"
+					color="purple.900"
+					fontSize={16}
+					fontWeight="medium"
+					textDecoration={useMatch("/search") ? "underline" : "none"}
+					onClick={() => navigate("/search")}
+				>
+					Search Recipe
+				</Button>
+			</>
 		);
 	}
 

@@ -5,6 +5,7 @@ import { Flex, HStack, Spacer } from "@chakra-ui/react";
 
 // Components + Images
 import CustomContainer from "components/layouts/CustomContainer";
+import BrandLogo from "components/navbars/BrandLogo";
 import NavbarMenu from "components/navbars/NavbarMenu";
 import NavbarMobile from "components/navbars/NavbarMobile";
 import UserAvatar from "components/navbars/UserAvatar";
@@ -15,7 +16,8 @@ export default function Navbar() {
 
 	return (
 		<CustomContainer w="full" position="fixed" zIndex={10} top={0} py={5} bg="white" boxShadow="xl">
-			<Flex>
+			<Flex align="center">
+				<BrandLogo />
 				<Spacer display={{ base: "flex", md: "none" }} />
 				<NavbarMobile />
 				<NavbarMenu />

@@ -43,3 +43,16 @@ export const RegisterSchema = yup.object({
 		.oneOf([yup.ref("password"), null], "Password do not match!"),
 	agreeTerms: yup.bool().required().oneOf([true], "Terms must be accepted!"),
 });
+
+export const AddRecipeSchema = yup.object({
+	name: yup.string().trim().max(30, "Recipe name must be less than 35 characters!").required("Recipe name required!"),
+	shortDesc: yup
+		.string()
+		.trim()
+		.max(450, "Recipe description must be less than 450 characters")
+		.required("Recipe description required!"),
+});
+
+export const AddCommentSchema = yup.object({
+	comment: yup.string().trim().max(450, "Comment must be less than 450 characters").required("Comment required!"),
+});

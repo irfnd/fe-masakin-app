@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { AddCommentSchema } from "helpers/validations";
 import useGetDataUser from "hooks/useGetDataUser";
 import useCapitalizeError from "hooks/useCapitalizeError";
 import recipes from "helpers/axios/recipes";
@@ -18,7 +19,8 @@ export default function AddComment(props) {
 	const { token } = useGetDataUser();
 	const [loading, setLoading] = useState(false);
 
-	const methods = useForm();
+	const formOptions = { resolver: yupResolver(AddCommentSchema) };
+	const methods = useForm(formOptions);
 
 	const onSubmit = ({ comment }) => {
 		setLoading(true);

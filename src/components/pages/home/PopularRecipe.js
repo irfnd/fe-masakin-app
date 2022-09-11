@@ -20,7 +20,7 @@ export default function PopularRecipe() {
 				<Flex direction="column" w={{ base: "full", sm: "80%", md: "full" }} gap={{ base: 10, md: 20 }}>
 					<Flex w="full" align="center">
 						<Stack direction="row" align="center" h="90px" gap={4} py={4}>
-							<Divider orientation="vertical" borderWidth={6} borderColor="orange.500" opacity={1} />
+							<Divider orientation="vertical" bg="orange.500" borderWidth={6} borderColor="orange.500" opacity={1} />
 							<Text
 								color="purple.900"
 								fontWeight="medium"
