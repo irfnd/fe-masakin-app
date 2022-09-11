@@ -87,7 +87,7 @@ export default function AddRecipeForm() {
 							py={6}
 							px={8}
 						>
-							Simpan
+							Add Recipe
 						</Button>
 					</Flex>
 				</Flex>
