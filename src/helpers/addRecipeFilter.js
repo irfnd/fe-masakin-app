@@ -1,7 +1,7 @@
 export const getIngredients = (data) => {
 	if (data.length > 0) {
 		const arr = data.map((el) => (el.text.trim().length > 0 ? el.text : null)).filter((el) => Boolean(el));
-		if (arr.length > 0) return arr.join("\n");
+		if (arr.length > 0) return arr.join("\r\n");
 		return "";
 	}
 	return "";
@@ -10,7 +10,7 @@ export const getIngredients = (data) => {
 export const getSteps = (data) => {
 	if (data.length > 0) {
 		const arr = data.map((el) => (el.step.trim().length > 0 ? el.step : null)).filter((el) => Boolean(el));
-		if (arr.length > 0) return arr.join("\n");
+		if (arr.length > 0) return arr.join("\r\n");
 		return "";
 	}
 	return "";

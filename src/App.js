@@ -8,50 +8,53 @@ import Profile from "pages/profile/Profile";
 import Search from "pages/Search";
 import AddRecipe from "pages/recipe/AddRecipe";
 import DetailRecipe from "pages/recipe/DetailRecipe";
+import ScrollToTop from "components/pages/ScrollToTop";
 import { WhenLogin, WhenNotLogin } from "components/pages/Protected";
 
 export default function App() {
 	return (
-		<Routes>
-			<Route path="/" element={<Home />} />
-			<Route
-				path="login"
-				element={
-					<WhenLogin>
-						<Login />
-					</WhenLogin>
-				}
-			/>
-			<Route
-				path="register"
-				element={
-					<WhenLogin>
-						<Register />
-					</WhenLogin>
-				}
-			/>
-			<Route path="profile">
+		<ScrollToTop>
+			<Routes>
+				<Route path="/" element={<Home />} />
 				<Route
-					index
+					path="login"
 					element={
-						<WhenNotLogin>
-							<Profile />
-						</WhenNotLogin>
+						<WhenLogin>
+							<Login />
+						</WhenLogin>
 					}
 				/>
-			</Route>
-			<Route path="search" element={<Search />} />
-			<Route path="recipe">
-				<Route path=":id" element={<DetailRecipe />} />
 				<Route
-					path="add"
+					path="register"
 					element={
-						<WhenNotLogin>
-							<AddRecipe />
-						</WhenNotLogin>
+						<WhenLogin>
+							<Register />
+						</WhenLogin>
 					}
 				/>
-			</Route>
-		</Routes>
+				<Route path="profile">
+					<Route
+						index
+						element={
+							<WhenNotLogin>
+								<Profile />
+							</WhenNotLogin>
+						}
+					/>
+				</Route>
+				<Route path="search" element={<Search />} />
+				<Route path="recipe">
+					<Route path=":id" element={<DetailRecipe />} />
+					<Route
+						path="add"
+						element={
+							<WhenNotLogin>
+								<AddRecipe />
+							</WhenNotLogin>
+						}
+					/>
+				</Route>
+			</Routes>
+		</ScrollToTop>
 	);
 }

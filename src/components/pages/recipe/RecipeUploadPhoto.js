@@ -46,59 +46,46 @@ export default function RecipeUploadPhoto(props) {
 	const { getRootProps, getInputProps, open } = useDropzone(dropzoneOptions(onDrop));
 
 	return (
-		<Flex direction="column" w="full" gap={4}>
-			<Text fontSize={16} fontWeight="medium" color="gray.600">
-				Recipe Photo
-			</Text>
-			<Flex
-				bg="gray.100"
-				borderWidth="1px"
-				borderColor="gray.400"
-				rounded="xl"
-				h={{ base: 250, md: 300 }}
-				w="full"
-				gap={1}
-				{...getRootProps()}
-			>
-				<input type="image" name={formName} aria-label={formName} onChange={onChange} {...getInputProps()} />
-				{!selectedFile && (
-					<Flex
-						direction="column"
-						justify="center"
-						align="center"
-						color="gray.400"
-						boxSize="full"
-						cursor="pointer"
-						onClick={open}
-					>
-						<Icon as={BiImageAdd} fontSize={50} />
-						<Text fontSize={14}>Add Photo</Text>
-						<Text textAlign="center" fontSize={10}>
-							Drag & drop photo here, or click to select photo
-						</Text>
-					</Flex>
-				)}
+		<Flex bg="gray.100" borderWidth="1px" borderColor="gray.400" rounded="xl" w="full" gap={1} {...getRootProps()}>
+			<input type="hidden" name={formName} aria-label={formName} onChange={onChange} {...getInputProps()} />
+			{!selectedFile && (
+				<Flex
+					direction="column"
+					justify="center"
+					align="center"
+					color="gray.400"
+					w="full"
+					h="300"
+					cursor="pointer"
+					onClick={open}
+				>
+					<Icon as={BiImageAdd} fontSize={50} />
+					<Text fontSize={14}>Add Photo</Text>
+					<Text textAlign="center" fontSize={10}>
+						Drag & drop photo here, or click to select photo
+					</Text>
+				</Flex>
+			)}
 
-				{selectedFile && (
-					<Flex position="relative" boxSize="full">
-						<Image boxSize="full" objectFit="cover" rounded="xl" src={selectedFile.preview} />
-						<IconButton
-							isLoading={loading}
-							icon={<BiX size={32} />}
-							position="absolute"
-							top={-2}
-							right={-2}
-							color="white"
-							bg="red.400"
-							rounded="full"
-							cursor="pointer"
-							_hover={{ textDecoration: "none", bg: "red.500", color: "white" }}
-							_active={{ bg: "red.600" }}
-							onClick={() => onClear()}
-						/>
-					</Flex>
-				)}
-			</Flex>
+			{selectedFile && (
+				<Flex position="relative" w="full" maxH="300">
+					<Image boxSize="full" objectFit="cover" rounded="xl" src={selectedFile.preview} />
+					<IconButton
+						isLoading={loading}
+						icon={<BiX size={32} />}
+						position="absolute"
+						top={-2}
+						right={-2}
+						color="white"
+						bg="red.400"
+						rounded="full"
+						cursor="pointer"
+						_hover={{ textDecoration: "none", bg: "red.500", color: "white" }}
+						_active={{ bg: "red.600" }}
+						onClick={() => onClear()}
+					/>
+				</Flex>
+			)}
 		</Flex>
 	);
 }

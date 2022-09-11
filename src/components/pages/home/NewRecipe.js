@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import useNewRecipe from "hooks/useNewRecipe";
 
 // Styles + Icons
@@ -9,6 +10,7 @@ import RecipePlaceholder from "assets/images/recipe-placeholder.png";
 
 export default function NewRecipe() {
 	const { data, loading } = useNewRecipe();
+	const navigate = useNavigate();
 
 	return (
 		<CustomContainer position="relative">
@@ -67,13 +69,14 @@ export default function NewRecipe() {
 										xl: 48,
 									}}
 									w="full"
+									noOfLines={1}
 								>
 									{data?.name}
 								</Text>
 							</Skeleton>
 							<Divider borderColor="gray.800" w={{ base: "full", sm: "50%", md: "20%" }} />
 							<Skeleton w="full" isLoaded={!loading}>
-								<Text w="full" fontSize={{ base: 16, md: 18, lg: 20 }}>
+								<Text w="full" fontSize={{ base: 16, md: 18, lg: 20 }} noOfLines={5}>
 									{data?.shortDesc}
 								</Text>
 							</Skeleton>
@@ -88,6 +91,7 @@ export default function NewRecipe() {
 									w={{ base: "full", md: "fit-content" }}
 									py={7}
 									px={10}
+									onClick={() => navigate(`/recipe/${data?.id}`)}
 								>
 									Learn More
 								</Button>

@@ -8,7 +8,7 @@ import SearchRecipeCard from "components/cards/SearchRecipeCard";
 
 export default function SearchRecipeList(props) {
 	const { filter } = props;
-	const { data, loading } = useSearch(filter);
+	const { data, mutate, loading } = useSearch(filter);
 
 	if (loading) {
 		return (
@@ -21,7 +21,7 @@ export default function SearchRecipeList(props) {
 	return (
 		<SimpleGrid columns={{ base: 1, sm: 1, md: 3, xl: 4 }} spacing={4} w="full">
 			{data.results.data.rows.map((el) => (
-				<SearchRecipeCard recipe={el} key={el.id} />
+				<SearchRecipeCard recipe={el} key={el.id} mutate={mutate} />
 			))}
 		</SimpleGrid>
 	);

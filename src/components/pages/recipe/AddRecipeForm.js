@@ -8,7 +8,7 @@ import recipes from "helpers/axios/recipes";
 import Swal from "sweetalert2";
 
 // Styles + Icons
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Text, Button } from "@chakra-ui/react";
 import { BiSave } from "react-icons/bi";
 
 // Components + Images
@@ -65,9 +65,14 @@ export default function AddRecipeForm() {
 	return (
 		<FormProvider {...methods}>
 			<form onSubmit={methods.handleSubmit(onSubmit)}>
-				<Flex direction="column" gap={8}>
-					<Flex direction={{ base: "column", md: "row" }} gap={6} w="full" h={{ base: "full", md: 300 }}>
-						<RecipeUploadPhoto name="photo" loading={loading} />
+				<Flex direction="column" h="full" gap={8}>
+					<Flex direction={{ base: "column", md: "row" }} h="full" gap={6}>
+						<Flex direction="column" w="full" gap={4}>
+							<Text fontSize={16} fontWeight="medium" color="gray.600">
+								Recipe Photo
+							</Text>
+							<RecipeUploadPhoto name="photo" loading={loading} />
+						</Flex>
 						<Flex direction="column" w="full" gap={6}>
 							<Input label="Name" name="name" placeholder="Recipe name" isGray />
 							<Input type="textarea" label="Description" name="shortDesc" placeholder="Recipe description" isGray />

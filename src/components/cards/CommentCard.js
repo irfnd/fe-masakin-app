@@ -5,16 +5,16 @@ import { Flex, Text, Avatar } from "@chakra-ui/react";
 import PlaceholderUser from "assets/images/profile-placeholder.png";
 
 export default function CommentCard(props) {
-	const { name, photo, comment } = props;
+	const { data } = props;
 
 	return (
 		<Flex gap={4}>
-			<Avatar src={photo || PlaceholderUser} />
+			<Avatar src={data.user.photo || PlaceholderUser} />
 			<Flex direction="column" fontSize={14}>
 				<Text fontWeight="semibold" fontSize={16} color="purple.800">
-					{name}
+					{data.user.name}
 				</Text>
-				<Text>{comment}</Text>
+				<Text>{data.comment}</Text>
 			</Flex>
 		</Flex>
 	);

@@ -22,15 +22,14 @@ export default function InputTextarea(props) {
 				fontSize={14}
 				bg={isGray ? "gray.100" : "white"}
 				color="gray.600"
+				h="full"
 				borderColor="gray.400"
 				focusBorderColor={!errors[name] ? "yellow.400" : "red.500"}
-				h="full"
 				p={7}
 				_hover={{ borderColor: "gray.500" }}
 				_focus={{ shadow: "0px 4px 10px 3px rgba(0, 0, 0, 0.11)" }}
 				{...register(name)}
 			/>
-			{errors[name] && <FormErrorMessage>{errors[name].message}</FormErrorMessage>}
 		</FormControl>
 	);
 }
