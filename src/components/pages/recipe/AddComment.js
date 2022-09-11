@@ -49,7 +49,7 @@ export default function AddComment(props) {
 	return (
 		<FormProvider {...methods}>
 			<form onSubmit={methods.handleSubmit(onSubmit)}>
-				<Flex direction="column" align="end" gap={3} h={{ base: 250, md: 350 }}>
+				<Flex direction="column" align="end" w="full" gap={3} h={{ base: 250, md: 350 }}>
 					<Input type="textarea" name="comment" placeholder="Add Comment" isGray />
 					<Button
 						type="submit"
@@ -58,7 +58,7 @@ export default function AddComment(props) {
 						fontWeight="medium"
 						color="purple.900"
 						leftIcon={<BiCommentAdd size={24} />}
-						w={{ base: "full", sm: "fit-content" }}
+						w={{ base: "full", lg: "fit-content" }}
 						py={6}
 						px={8}
 					>

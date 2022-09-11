@@ -6,9 +6,17 @@ import useCheckRecipe from "hooks/useCheckRecipe";
 import recipes from "helpers/axios/recipes";
 
 // Styles + Icons
-import { Flex, Text, Image, ListItem, UnorderedList, Button, Skeleton } from "@chakra-ui/react";
+import { Flex, Text, Image, Icon, ListItem, UnorderedList, Button, Skeleton } from "@chakra-ui/react";
+import {
+	RiHeartFill,
+	RiBookmarkFill,
+	RiHeartLine,
+	RiBookmarkLine,
+	RiCalendarEventFill,
+	RiUserStarFill,
+} from "react-icons/ri";
 import { BiPlay } from "react-icons/bi";
-import { RiHeartFill, RiBookmarkFill, RiHeartLine, RiBookmarkLine } from "react-icons/ri";
+import { GoPrimitiveDot } from "react-icons/go";
 
 // Constants
 import ASSETS from "constants/AssetsConst";
@@ -153,11 +161,20 @@ export default function DetailRecipeContent(props) {
 							<Text fontSize={16}>{data?.shortDesc}</Text>
 						)}
 					</Skeleton>
-					<Skeleton rounded="md" isLoaded={!loading}>
-						<Text fontSize={14} color="gray.500">
-							{!data ? "September 12, 2022, 24:00 WIB" : useDateFormat(data?.createdAt)}
-						</Text>
-					</Skeleton>
+					<Flex direction="column" gap={1}>
+						<Skeleton rounded="md" isLoaded={!loading}>
+							<Flex align="center" color="gray.500" gap={2}>
+								<Icon as={RiUserStarFill} fontSize={16} />
+								<Text fontSize={14}>{!data ? "Author" : data?.user?.name}</Text>
+							</Flex>
+						</Skeleton>
+						<Skeleton rounded="md" isLoaded={!loading}>
+							<Flex align="center" color="gray.500" gap={2}>
+								<Icon as={RiCalendarEventFill} fontSize={16} />
+								<Text fontSize={14}>{!data ? "September 12, 2022, 24:00 WIB" : useDateFormat(data?.createdAt)}</Text>
+							</Flex>
+						</Skeleton>
+					</Flex>
 				</Flex>
 				<Flex direction="column" gap={3}>
 					<Skeleton rounded="md" isLoaded={!loading}>
@@ -219,11 +236,14 @@ export default function DetailRecipeContent(props) {
 												fontSize={14}
 												colorScheme="yellow"
 												color="purple.900"
-												leftIcon={<BiPlay size={26} />}
+												leftIcon={data?.videos?.length > 0 ? <BiPlay size={26} /> : <GoPrimitiveDot size={22} />}
+												w={{ base: "full", md: "fit-content" }}
 												px={6}
 												onClick={() => {
 													const videoURL =
-														data?.videos?.filter((item) => item.name === `Step ${i + 1}`)[0].video || null;
+														data?.videos?.length > 0
+															? data?.videos?.filter((item) => (item.name === `Step ${i + 1}` ? item[0].video : null))
+															: null;
 													if (videoURL) {
 														window.open(videoURL, "_blank");
 													}

@@ -19,7 +19,7 @@ export default function SearchRecipeList(props) {
 	}
 
 	return (
-		<SimpleGrid columns={{ base: 1, sm: 1, md: 3, xl: 4 }} spacing={4} w="full">
+		<SimpleGrid columns={{ base: 1, sm: 1, md: 2, xl: 4 }} spacing={4} w="full">
 			{data.results.data.rows.map((el) => (
 				<SearchRecipeCard recipe={el} key={el.id} mutate={mutate} />
 			))}
