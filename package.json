@@ -1,10 +1,14 @@
 {
-	"name": "masakin-app",
+	"name": "fe-masakin-app",
 	"description": "Masakin App - \"A place to find inspiration for cooking recipes anywhere and anytime\"",
 	"version": "1.0.0",
 	"author": "Irfandi Iqbal Abimanyu",
-	"private": true,
+	"private": false,
 	"license": "MIT",
+	"engines": {
+		"node": ">=16.0.0",
+		"npm": ">=8.0.0"
+	},
 	"dependencies": {
 		"@chakra-ui/icons": "^2.0.9",
 		"@chakra-ui/react": "^2.2.9",
