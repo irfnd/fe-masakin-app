@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 // Styles + Icons
 import { Box, Flex, Text, Image } from "@chakra-ui/react";
 
@@ -6,9 +8,10 @@ import RecipePlaceholder from "assets/images/recipe-placeholder.png";
 
 export default function ProfileRecipe(props) {
 	const { recipe } = props;
+	const navigate = useNavigate();
 
 	return (
-		<Flex position="relative" h={210} cursor="pointer">
+		<Flex position="relative" h={210} cursor="pointer" onClick={() => navigate(`/recipe/${recipe.id}`)}>
 			<Box position="absolute" bgGradient="linear(transparent, rgba(0, 0, 0, 0.5) 80%)" rounded="2xl" boxSize="full">
 				{" "}
 			</Box>

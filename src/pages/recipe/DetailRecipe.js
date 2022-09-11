@@ -15,7 +15,7 @@ export default function DetailRecipe() {
 	const { data, mutate, loading } = useFindRecipe(id);
 
 	return (
-		<FullLayout title="Add Recipe">
+		<FullLayout title={data ? data?.name : "Loading"}>
 			<CustomContainer minH="100vh">
 				<Flex direction="column" pt={{ base: "120px", md: "140px" }} pb="120px" px={{ base: 5, md: 0 }} gap={10}>
 					<Skeleton rounded="md" isLoaded={!loading}>

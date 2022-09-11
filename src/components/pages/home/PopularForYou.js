@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import usePopularForYou from "hooks/usePopularForYou";
 
 // Styles + Icons
@@ -9,6 +10,7 @@ import RecipePlaceholder from "assets/images/recipe-placeholder.png";
 
 export default function PopularForYou() {
 	const { data, loading } = usePopularForYou();
+	const navigate = useNavigate();
 
 	return (
 		<CustomContainer>
@@ -105,6 +107,7 @@ export default function PopularForYou() {
 									w={{ base: "full", md: "fit-content" }}
 									py={7}
 									px={10}
+									onClick={() => navigate(`/recipe/${data?.id}`)}
 								>
 									Learn More
 								</Button>

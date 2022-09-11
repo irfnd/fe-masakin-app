@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import usePopularRecipe from "hooks/usePopularRecipe";
@@ -13,6 +14,7 @@ import RecipePlaceholder from "assets/images/recipe-placeholder.png";
 export default function PopularRecipeSlider() {
 	const TotalRows = useBreakpointValue({ base: 1, md: 2, lg: 3, xl: 4 });
 	const { data, loading } = usePopularRecipe();
+	const navigate = useNavigate();
 
 	return (
 		<Swiper modules={[FreeMode]} spaceBetween={20} slidesPerView={TotalRows} freeMode style={{ width: "inherit" }}>
@@ -20,7 +22,7 @@ export default function PopularRecipeSlider() {
 				data?.map((el) => (
 					<SwiperSlide key={el.id}>
 						<Skeleton w="full" rounded="2xl" isLoaded={!loading}>
-							<Flex position="relative" cursor="pointer">
+							<Flex position="relative" cursor="pointer" onClick={() => navigate(`/recipe/${el.id}`)}>
 								<Box
 									position="absolute"
 									bgGradient="linear(transparent, rgba(0, 0, 0, 0.5) 80%)"

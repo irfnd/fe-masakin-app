@@ -139,7 +139,7 @@ export default function UserPhoto() {
 				</form>
 			</FormProvider>
 			<Text fontSize={18} fontWeight="semibold" color="purple.900">
-				{user.name}
+				{user.data.name}
 			</Text>
 		</Flex>
 	);
