@@ -3,9 +3,8 @@ import { useTitle } from "react-use";
 // Styles + Icons
 import { Flex, Image } from "@chakra-ui/react";
 
-// Components + Images
-import BgLogin from "assets/images/background-login.jpg";
-import BrandLogo from "assets/images/brand-logo-1.png";
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function AuthLayout(props) {
 	const { title, children } = props;
@@ -17,7 +16,7 @@ export default function AuthLayout(props) {
 				position={{ base: "absolute", md: "fixed" }}
 				justify="center"
 				align="center"
-				bgImage={`linear-gradient(rgba(230, 98, 0, 0.7), rgba(230, 98, 0, 0.7)), url(${BgLogin})`}
+				bgImage={`linear-gradient(rgba(230, 98, 0, 0.7), rgba(230, 98, 0, 0.7)), url(${ASSETS.backgroundAuth.url})`}
 				bgPosition="top"
 				bgSize="cover"
 				bgRepeat="no-repeat"
@@ -25,7 +24,7 @@ export default function AuthLayout(props) {
 				w={{ base: "full", md: "50%" }}
 			>
 				<Flex direction="column" align="center">
-					<Image src={BrandLogo} boxSize="140px" />
+					<Image src={ASSETS.brandLogo1.url} alt={ASSETS.brandLogo1.alt} boxSize="140px" />
 				</Flex>
 			</Flex>
 			<Flex

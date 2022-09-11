@@ -5,7 +5,7 @@ import useGetDataUser from "hooks/useGetDataUser";
 import { Stack, HStack, Button, Link } from "@chakra-ui/react";
 
 // Constants
-import { NAV_ITEMS } from "constants/NavbarConst";
+import NAV_ITEMS from "constants/NavbarConst";
 
 export default function NavbarMenu(props) {
 	const { isMobile = false } = props;

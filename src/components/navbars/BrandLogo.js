@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 // Styles + Icons
 import { Flex, Image } from "@chakra-ui/react";
 
-// Components + Images
-import BrandLogo2 from "assets/images/brand.logo-2.png";
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function BrandLogo() {
 	const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function BrandLogo() {
 			gap={1}
 			onClick={() => navigate("/")}
 		>
-			<Image src={BrandLogo2} w="120px" />
+			<Image src={ASSETS.brandLogo2.url} alt={ASSETS.brandLogo2.alt} w="120px" />
 		</Flex>
 	);
 }

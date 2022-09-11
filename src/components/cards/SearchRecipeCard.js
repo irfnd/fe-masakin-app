@@ -16,8 +16,8 @@ import {
 	RiBookmarkLine,
 } from "react-icons/ri";
 
-// Components + Images
-import RecipePlaceholder from "assets/images/recipe-placeholder.png";
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function SearchRecipeCard(props) {
 	const { recipe, mutate: searchMutate } = props;
@@ -75,10 +75,10 @@ export default function SearchRecipeCard(props) {
 		<Flex direction="column" border="1px" borderColor="gray.300" rounded="xl" p={4}>
 			<Flex w="full" h="200px" cursor="pointer" onClick={() => navigate(`/recipe/${recipe.id}`)}>
 				<Image
-					src={recipe.photo || RecipePlaceholder}
+					src={recipe.photo || ASSETS.recipePlaceholder.url}
+					alt={recipe.photoName || ASSETS.recipePlaceholder.alt}
 					boxSize="full"
 					objectFit="cover"
-					alt="Photo Recipe"
 					rounded="xl"
 				/>
 			</Flex>

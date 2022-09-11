@@ -18,7 +18,9 @@ import { BiSearch } from "react-icons/bi";
 
 // Components + Images
 import CustomContainer from "components/layouts/CustomContainer";
-import DiscoverImg from "assets/images/discover.jpg";
+
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function Discover() {
 	const [search, setSearch] = useState("");
@@ -87,7 +89,7 @@ export default function Discover() {
 				</Stack>
 				<Flex justify={{ base: "center", md: "end" }} align="center" w={{ base: "full", sm: "80%", md: "50%" }}>
 					<AspectRatio w="450px" ratio={1}>
-						<Image src={DiscoverImg} rounded="2xl" alt="Photo Section 1" objectFit="cover" />
+						<Image src={ASSETS.discoverRecipe1.url} rounded="2xl" alt={ASSETS.discoverRecipe1.alt} objectFit="cover" />
 					</AspectRatio>
 				</Flex>
 			</Flex>

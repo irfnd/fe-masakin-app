@@ -13,7 +13,9 @@ import { BiEditAlt } from "react-icons/bi";
 
 // Components + Images
 import UserPhotoUpload from "components/pages/profile/UserPhotoUpload";
-import ProfileImg from "assets/images/profile-placeholder.png";
+
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function UserPhoto() {
 	const { user, token } = useGetDataUser();
@@ -106,6 +108,7 @@ export default function UserPhoto() {
 					{isUpload ? (
 						<UserPhotoUpload
 							photo={user.data.photo}
+							photoName={user.data.photoName}
 							name="photo"
 							isUpload={isUpload}
 							setIsUpload={setIsUpload}
@@ -115,7 +118,13 @@ export default function UserPhoto() {
 					) : (
 						<Flex position="relative" boxSize="140px" rounded="full" borderColor="orange.400" borderWidth={2}>
 							<Flex>
-								<Image rounded="full" boxSize="full" objectFit="cover" src={user.data.photo || ProfileImg} />
+								<Image
+									rounded="full"
+									boxSize="full"
+									objectFit="cover"
+									src={user.data.photo || ASSETS.userPlaceholder.url}
+									alt={user.data.photoName || ASSETS.userPlaceholder.alt}
+								/>
 							</Flex>
 							<Button
 								type="button"

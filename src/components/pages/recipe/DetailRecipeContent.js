@@ -10,8 +10,8 @@ import { Flex, Text, Image, ListItem, UnorderedList, Button, Skeleton } from "@c
 import { BiPlay } from "react-icons/bi";
 import { RiHeartFill, RiBookmarkFill, RiHeartLine, RiBookmarkLine } from "react-icons/ri";
 
-// Components + Images
-import PlaceholderImage from "assets/images/recipe-placeholder.png";
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function DetailRecipeContent(props) {
 	const { id } = props;
@@ -69,7 +69,13 @@ export default function DetailRecipeContent(props) {
 		<Flex direction="column" gap={10} boxSize="full">
 			<Skeleton rounded="xl" isLoaded={!loading}>
 				<Flex position="relative" rounded="xl" h={{ base: 250, md: 350 }} w="full">
-					<Image boxSize="full" objectFit="cover" rounded="xl" src={data?.photo || PlaceholderImage} />
+					<Image
+						boxSize="full"
+						objectFit="cover"
+						rounded="xl"
+						src={data?.photo || ASSETS.recipePlaceholder.url}
+						alt={data?.photoName || ASSETS.recipePlaceholder.alt}
+					/>
 					{token.data ? (
 						<Flex position="absolute" bottom={0} right={0} mb={2} me={2} gap={2}>
 							{!check.loading && check.data.liked ? (

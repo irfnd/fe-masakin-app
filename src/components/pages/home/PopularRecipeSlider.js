@@ -8,8 +8,8 @@ import "swiper/css/bundle";
 import { Box, Flex, Text, Image, Skeleton, AspectRatio } from "@chakra-ui/react";
 import { useBreakpointValue } from "@chakra-ui/react";
 
-// Components + Images
-import RecipePlaceholder from "assets/images/recipe-placeholder.png";
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function PopularRecipeSlider() {
 	const TotalRows = useBreakpointValue({ base: 1, md: 2, lg: 3, xl: 4 });
@@ -36,8 +36,8 @@ export default function PopularRecipeSlider() {
 								</Text>
 								<AspectRatio w="450px" ratio={1} zIndex={-1}>
 									<Image
-										src={el.photo || RecipePlaceholder}
-										alt={el?.photoName || el?.name}
+										src={el.photo || ASSETS.recipePlaceholder.url}
+										alt={el?.photoName || ASSETS.recipePlaceholder.alt}
 										boxSize="full"
 										objectFit="cover"
 										rounded="2xl"

@@ -8,11 +8,11 @@ import Swal from "sweetalert2";
 import { Flex, Image, Text, Button, Icon } from "@chakra-ui/react";
 import { BiX, BiCheck, BiCloudUpload } from "react-icons/bi";
 
-// Components + Images
-import ProfileImg from "assets/images/profile-placeholder.png";
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function UserPhotoUpload(props) {
-	const { photo, name, isUpload, setIsUpload, onDelete, loading } = props;
+	const { photo, photoName, name, isUpload, setIsUpload, onDelete, loading } = props;
 	const [selectedFile, setSelectedFile] = useState(null);
 
 	const { register, setValue } = useFormContext();
@@ -61,7 +61,13 @@ export default function UserPhotoUpload(props) {
 			<input type="image" name={formName} aria-label={formName} onChange={onChange} {...getInputProps()} />
 			{photo && (
 				<Flex>
-					<Image rounded="full" boxSize="full" objectFit="cover" src={photo || ProfileImg} />
+					<Image
+						rounded="full"
+						boxSize="full"
+						objectFit="cover"
+						src={photo || ASSETS.userPlaceholder.url}
+						alt={photoName || ASSETS.userPlaceholder.alt}
+					/>
 				</Flex>
 			)}
 

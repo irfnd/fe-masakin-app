@@ -6,8 +6,8 @@ import Swal from "sweetalert2";
 import { HStack, Flex, Box, Text, Avatar, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { BiUser, BiLogOut } from "react-icons/bi";
 
-// Components + Images
-import ProfileImg from "assets/images/profile-placeholder.png";
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function UserAvatar(props) {
 	const { onClose } = props;
@@ -44,7 +44,13 @@ export default function UserAvatar(props) {
 			<Box>
 				<Menu isLazy>
 					<MenuButton>
-						<Avatar boxSize={10} borderWidth={2} borderColor="orange.400" src={user?.data?.photo || ProfileImg} />
+						<Avatar
+							boxSize={10}
+							borderWidth={2}
+							borderColor="orange.400"
+							src={user?.data?.photo || ASSETS.userPlaceholder.url}
+							alt={user?.data?.photoName || ASSETS.userPlaceholder.alt}
+						/>
 					</MenuButton>
 					<MenuList mt={4}>
 						<MenuItem

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 // Styles + Icons
 import { Box, Flex, Text, Image } from "@chakra-ui/react";
 
-// Components + Images
-import RecipePlaceholder from "assets/images/recipe-placeholder.png";
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function ProfileRecipe(props) {
 	const { recipe } = props;
@@ -19,10 +19,10 @@ export default function ProfileRecipe(props) {
 				{recipe.name}
 			</Text>
 			<Image
-				src={recipe.photo || RecipePlaceholder}
+				src={recipe.photo || ASSETS.recipePlaceholder.url}
+				alt={recipe.photoName || ASSETS.recipePlaceholder.alt}
 				rounded="2xl"
 				boxSize="full"
-				alt={recipe.photoName || "Placeholder Photo"}
 				objectFit="cover"
 			/>
 		</Flex>

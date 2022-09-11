@@ -6,7 +6,9 @@ import { Box, Flex, Stack, Text, Divider, Image, AspectRatio, Button, Skeleton }
 
 // Components + Images
 import CustomContainer from "components/layouts/CustomContainer";
-import RecipePlaceholder from "assets/images/recipe-placeholder.png";
+
+// Constants
+import ASSETS from "constants/AssetsConst";
 
 export default function NewRecipe() {
 	const { data, loading } = useNewRecipe();
@@ -106,8 +108,8 @@ export default function NewRecipe() {
 							<AspectRatio w="450px" ratio={1}>
 								<Skeleton rounded="2xl" isLoaded={!loading}>
 									<Image
-										src={data?.photo || RecipePlaceholder}
-										alt={data?.photoName || data?.name}
+										src={data?.photo || ASSETS.recipePlaceholder.url}
+										alt={data?.photoName || ASSETS.recipePlaceholder.alt}
 										objectFit="cover"
 										boxSize="full"
 										rounded="2xl"
